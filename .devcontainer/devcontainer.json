@@ -6,7 +6,7 @@
 	// 	//"args": { "VARIANT": "ubuntu-20.04" }
 	// },
 	"dockerComposeFile": ["docker-compose.yml"],
-	"service": "mavdrive",
+	"service": "maria-ros",
 	// "runArgs": [ "--cap-add=SYS_PTRACE", "--security-opt", "seccomp=unconfined", "--privileged"],
 	"shutdownAction": "none",
 

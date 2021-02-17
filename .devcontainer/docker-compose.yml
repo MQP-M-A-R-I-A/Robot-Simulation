@@ -1,0 +1,31 @@
+version: "3.8"
+services:
+  maria-ros:
+    container_name: maria-ros
+    image: maria-ros:1.0
+    build: .
+    # volumes:
+    #   - src/:/root/catkin/src
+
+    # For attaching shells
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+
+    # Set up GPU
+    runtime: nvidia
+    # Environment Variables
+    environment:
+      - DISPLAY
+      - QT_X11_NO_MITSHM=1
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=all
+    # Environment variables for On-Demand Graphics. 
+      # Disable if you want to use Intel Graphics
+      - __NV_PRIME_RENDER_OFFLOAD=1     
+      - __GLX_VENDOR_LIBRARY_NAME=nvidia
+    # Startup Command
+    network_mode: "host"
+    # privileged: true
+
+    # Startup Command
+    # command: bash -c 

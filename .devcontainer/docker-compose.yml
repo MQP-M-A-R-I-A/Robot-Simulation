@@ -4,15 +4,15 @@ services:
     container_name: maria-ros
     image: maria-ros:1.0
     build: .
-    # volumes:
-    #   - src/:/root/catkin/src
+    volumes:
+      - ../.:/root/catkin_ws
 
     # For attaching shells
     stdin_open: true # docker run -i
     tty: true        # docker run -t
 
     # Set up GPU
-    runtime: nvidia
+    # runtime: nvidia
     # Environment Variables
     environment:
       - DISPLAY
@@ -25,7 +25,13 @@ services:
       - __GLX_VENDOR_LIBRARY_NAME=nvidia
     # Startup Command
     network_mode: "host"
-    # privileged: true
+    privileged: true
+
+    # Required for ptrace-based debuggers like C++, Go, and Rust
+    cap_add:
+    - SYS_PTRACE
+    security_opt:
+    - seccomp:unconfined
 
     # Startup Command
     # command: bash -c 

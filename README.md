@@ -27,5 +27,5 @@ rosdep update
 2. Install ROS Dependencies:
 ```bash
 sudo apt update
-rosdep install --from-paths src --ignore-src --rosdistro $ROS_DISTRO
+sudo rosdep install --from-paths src --ignore-src --rosdistro $ROS_DISTRO
 ```

@@ -8,9 +8,8 @@ project(maria_block_description)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-  joint_State_publisher
+  joint_state_publisher
   robot_state_publisher
-  rviz
   urdf
   xacro
 )

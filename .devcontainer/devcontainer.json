@@ -31,7 +31,8 @@
 		"ms-vscode.cmake-tools",
 		"streetsidesoftware.code-spell-checker",
 		"ms-iot.vscode-ros",
-		"gruntfuggly.todo-tree"
+		"gruntfuggly.todo-tree",
+		"redhat.vscode-yaml"
 	],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.

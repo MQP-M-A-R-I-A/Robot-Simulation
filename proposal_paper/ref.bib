@@ -1,7 +1,23 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% ----- Introduction ----- %
+% ----- Related Work ----- %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+@inbook{BillE,
+    author = {Ben Jenett and Kenneth Cheung},
+    title = {BILL-E: Robotic Platform for Locomotion and Manipulation of Lightweight Space Structures},
+    booktitle = {25th AIAA/AHS Adaptive Structures Conference},
+    chapter = {},
+    pages = {},
+    doi = {10.2514/6.2017-1876},
+    URL = {https://arc.aiaa.org/doi/abs/10.2514/6.2017-1876},
+    eprint = {https://arc.aiaa.org/doi/pdf/10.2514/6.2017-1876}
+}
+% TODO: Add authors: Hannan Liang, Trevor Rizzo, Caleb Wagner
+@article{PastMQP,
+    author = {Cameron Collins, Josue Contreras, Neel Dhanaraj },
+    title = {Swarm Construction: A Method in Multi-Agent Robotic Assembly},
+    year = {2020},
+    URL = {https://web.wpi.edu/Pubs/E-project/Available/E-project-051620-143223/unrestricted/3DSwarmConstruction_FinalReport.pdf}
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 % ----- Simulation ----- %
@@ -17,12 +33,22 @@
     journal={gazebo_plugins: Plugin XML Reference and Example}
 }
 
+@article{ROSControl,
+    author = {Chitta, Sachin and Marder-Eppstein, Eitan and Meeussen, Wim and Pradeep, Vijay and Rodr{\'i}guez Tsouroukdissian, Adolfo  and Bohren, Jonathan and Coleman, David and Magyar, Bence and Raiola, Gennaro and L{\"u}dtke, Mathias and Fern{\'a}ndez Perdomo, Enrique},
+    title = {ros\_control: A generic and simple control framework for ROS},
+    journal = {The Journal of Open Source Software},
+    year = {2017},
+    doi = {10.21105/joss.00456},
+    URL = {http://www.theoj.org/joss-papers/joss.00456/10.21105.joss.00456.pdf}
+}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ----- Path Planning ----- %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TODO: Add Ray Skeele as an author to the paper below
 @article{RAGS,
-    author = {Jen Jen Chung, Ander J. Smith, Ray Skeele, Geoffrey A. Hollinger},
-    title = {RIsk-aware graph search with dynamic edge cost discovery},
+    author = {Jen Jen Chung, Ander J. Smith, Geoffrey A. Hollinger},
+    title = {Risk-aware graph search with dynamic edge cost discovery},
     journal = {The International Journal of Robotics Research},
     year = {2018},
     doi = {10.1177/0278364918781009},
@@ -37,15 +63,6 @@
     URL = {https://users.aalto.fi/~hamalap5/FutureGameAnimation/p113-naderi.pdf}
 }
 
-@article{ROSControl,
-    author = {Chitta, Sachin and Marder-Eppstein, Eitan and Meeussen, Wim and Pradeep, Vijay and Rodr{\'i}guez Tsouroukdissian, Adolfo  and Bohren, Jonathan and Coleman, David and Magyar, Bence and Raiola, Gennaro and L{\"u}dtke, Mathias and Fern{\'a}ndez Perdomo, Enrique},
-    title = {ros\_control: A generic and simple control framework for ROS},
-    journal = {The Journal of Open Source Software},
-    year = {2017},
-    doi = {10.21105/joss.00456},
-    URL = {http://www.theoj.org/joss-papers/joss.00456/10.21105.joss.00456.pdf}
-}
-
 @article{CollisionAvoidance,
     author = {Utkarsh Kumar, Adrish Banerjee, Rahul Kala},
     title = {Collision avoiding decentralized sorting of robotic swarm},
@@ -54,9 +71,76 @@
     URL = {https://link.springer.com/article/10.1007%2Fs10489-019-01602-5}
 }
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ----- Motion Planning ----- %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 @article{LeggedRobotsNavPlanning,
     author = {Joel Chestnutt},
     title = {Navigation Planning for Legged Robots},
     year = {2007},
     URL = {http://www.cs.cmu.edu/~cga/papers/chestnutt-thesis.pdf}
+}
+
+@INPROCEEDINGS{ModelPredictiveControl,  
+    author={F. {Farshidian} and E. {Jelavic} and A. {Satapathy} and M. {Giftthaler} and J. {Buchli}},  
+    booktitle={2017 IEEE-RAS 17th International Conference on Humanoid Robotics (Humanoids)},   
+    title={Real-time motion planning of legged robots: A model predictive control approach},   
+    year={2017},  
+    volume={},  
+    number={},  
+    pages={577-584},  
+    doi={10.1109/HUMANOIDS.2017.8246930}
+}
+
+% TODO: Add , {Fakhrabadi} M.M.S
+@article{InchwormLocomotion,
+    author = {{Ghanbari} A., {Rostami} A., {Noorani} S.M.R.S.},
+    title = { Modeling and Simulation of Inchworm Mode Locomotion},
+    year = {2008},
+    doi = {10.1007/978-3-540-88513-9_66},
+    URL = {https://link.springer.com/chapter/10.1007/978-3-540-88513-9_66#citeas}
+}
+
+@INPROCEEDINGS{SearchFootstepPlanner,  
+    author={A. {Hornung} and A. {Dornbush} and M. {Likhachev} and M. {Bennewitz}},  
+    booktitle={2012 12th IEEE-RAS International Conference on Humanoid Robots (Humanoids 2012)},   
+    title={Anytime search-based footstep planning with suboptimality bounds},   
+    year={2012},  
+    volume={},  
+    number={},  
+    pages={674-679},  
+    doi={10.1109/HUMANOIDS.2012.6651592}
+}
+
+@inproceedings{MotionPlanningInchworm,
+  title={Uncertainty modelling and motion planning of an inchworm robot navigating in complex structural environments},
+  author={David Pagano},
+  year={2018}
+}
+
+@article{GaitGeneration, 
+    title={Locomotive gait generation for inchworm-like robots using finite state approach}, 
+    volume={19}, 
+    DOI={10.1017/S0263574700003271}, 
+    number={5}, 
+    journal={Robotica}, 
+    publisher={Cambridge University Press}, 
+    author={Chen, I-Ming and Yeo, Song Huat and Gao, Yan}, 
+    year={2001}, 
+    pages={535–542}
+}
+
+@inproceedings{PlanarInchWormDesign,
+    doi = {10.22260/ISARC2000/0075},
+    year = 2000,
+    month = {September},
+    author = {Yeo, Song-Huat and Chen, I-Ming and Senanayake, R S and Wong, Peng Sin},
+    title = {Design and Development of a Planar Inchworm Robot},
+    booktitle = {Proceedings of the 17th IAARC/CIB/IEEE/IFAC/IFR International Symposium on Automation and Robotics in Construction},
+    isbn = {9789570266986},
+    publisher = {International Association for Automation and Robotics in Construction (IAARC)},
+    editor = {Wang, Ming-Teh},
+    pages = {1-6},
+    address = {Taipei, Taiwan}
 }

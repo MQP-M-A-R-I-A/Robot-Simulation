@@ -41,7 +41,7 @@
 ]{biblatex}
 \usepackage{csquotes}
 
-%\usepackage{cite}
+% \usepackage{cite}
 % cite.sty was written by Donald Arseneau
 % V1.6 and later of IEEEtran pre-defines the format of the cite.sty package
 % \cite{} output to follow that of the IEEE. Loading the cite package will
@@ -57,7 +57,8 @@
 % http://www.ctan.org/pkg/cite
 % The documentation is contained in the cite.sty file itself.
 
-
+% \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+%     T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ***** Graphics Packages ***** %
@@ -65,7 +66,6 @@
 
 \usepackage{graphicx}
 \usepackage{hyperref}
-\usepackage{todonotes}
 % graphicx was written by David Carlisle and Sebastian Rahtz. It is
 % required if you want graphics, photos, etc. graphicx.sty is already
 % installed on most LaTeX systems. The latest version and documentation
@@ -90,7 +90,9 @@
 % ***** Math Packages ***** %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%\usepackage{amsmath}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
 % A popular package from the American Mathematical Society that provides
 % many useful and powerful commands for dealing with mathematics.
 %
@@ -106,7 +108,7 @@
 % ***** Specialized List Packages ***** %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%\usepackage{algorithmic}
+\usepackage{algorithmic}
 % algorithmic.sty was written by Peter Williams and Rogerio Brito.
 % This package provides an algorithmic environment fo describing algorithms.
 % You can use the algorithmic environment in-text or within a figure
@@ -236,8 +238,8 @@
 % the user used the short optional argument of \caption[]{}.
 % IEEE papers do not typically make use of \caption[]'s optional argument,
 % so this should not be an issue. A similar trick can be used to disable
-% captions of packages such as subfig.sty that lack options to turn off
-% the subcaptions:
+% captions of packages such as subfig.sty th\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    % T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 % For subfig.sty:
 % \let\MYorigsubfloat\subfloat
 % \renewcommand{\subfloat}[2][\relax]{\MYorigsubfloat[]{#2}}

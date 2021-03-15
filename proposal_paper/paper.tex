@@ -1,6 +1,48 @@
-\documentclass[twocolumn,10pt]{IEEEconf}
+\documentclass[conference]{IEEEtran}
 % \special{papersize=8.5in,11in}
 
+\title{Paper Title*\\
+{\footnotesize \textsuperscript{*}Note: Sub-titles are not captured in Xplore and
+should not be used}
+\thanks{Identify applicable funding agency here. If none, delete this.}
+}
+
+\author{\IEEEauthorblockN{1\textsuperscript{st} Given Name Surname}
+\IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
+\textit{name of organization (of Aff.)}\\
+City, Country \\
+email address}
+\and
+\IEEEauthorblockN{2\textsuperscript{nd} Given Name Surname}
+\IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
+\textit{name of organization (of Aff.)}\\
+City, Country \\
+email address}
+\and
+\IEEEauthorblockN{3\textsuperscript{rd} Given Name Surname}
+\IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
+\textit{name of organization (of Aff.)}\\
+City, Country \\
+email address}
+\and
+\IEEEauthorblockN{4\textsuperscript{th} Given Name Surname}
+\IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
+\textit{name of organization (of Aff.)}\\
+City, Country \\
+email address}
+\and
+\IEEEauthorblockN{5\textsuperscript{th} Given Name Surname}
+\IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
+\textit{name of organization (of Aff.)}\\
+City, Country \\
+email address}
+\and
+\IEEEauthorblockN{6\textsuperscript{th} Given Name Surname}
+\IEEEauthorblockA{\textit{dept. name of organization (of Aff.)} \\
+\textit{name of organization (of Aff.)}\\
+City, Country \\
+email address}
+}
 
 % Import setup file with includes
 \input{setup.tex}
@@ -9,41 +51,30 @@
 % ---- Paper Specific Setup ----- %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\title{Inchworm goes brrr}
-
-% \title{DRAFT: AN ARTICLE CREATED USING \LaTeX2\raisebox{-.3ex}{$\epsilon$}\ IN ASME FORMAT}
-
-
-% TODO: Add other authors
-\author{Alex C. Tacescu}
-
-
 \bibliography{ref}
 
 \begin{document}
-    % \markboth{Journal of \LaTeX\ Class Files,~Vol.~14, No.~8, August~2015}%
-    % {Shell \MakeLowercase{\textit{et al.}}: Bare Demo of IEEEtran.cls for IEEE Journals}
 
     % make the title area
     \maketitle
 
     % Add abstract
-    % \input{sections/abstract.tex}
+    \input{sections/abstract.tex}
 
     % Introduction
-    % \input{sections/intro.tex}
+    \input{sections/intro.tex}
 
-    % % Background
-    % \input{sections/background.tex}
+    % Related Work
+    \input{sections/relatedwork.tex}
 
-    % % Methods
-    % \input{sections/design.tex}
+    % Proposed Methods
+    \input{sections/methods.tex}
 
-    % % Analysis
-    % \input{sections/anaylsis.tex}
+    % Metrics for Success
+    \input{sections/successeval.tex}
 
-    % % Conclusion
-    % \input{sections/conclusion.tex}
+    % Schedule
+    \input{sections/schedule.tex}
 
     \printbibliography
 

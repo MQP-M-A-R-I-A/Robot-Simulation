@@ -9,8 +9,107 @@
     </gazebo>
 
     <!-- Links -->
+    <link name="inchworm_main"/>
+
+    <link name="b_link">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://maria_inchworm_description/meshes/inchworm_blink.obj"/>
+            </geometry>
+        </visual>
+    </link>
     
+    <link name="frontleg_link">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 3.1416"/>
+            <geometry>
+                <mesh filename="package://maria_inchworm_description/meshes/inchworm_leg.obj"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <link name="frontfoot_link">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://maria_inchworm_description/meshes/inchworm_foot.obj"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <link name="c_link">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://maria_inchworm_description/meshes/inchworm_clink.obj"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <link name="backleg_link">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 3.1416"/>
+            <geometry>
+                <mesh filename="package://maria_inchworm_description/meshes/inchworm_leg.obj"/>
+            </geometry>
+        </visual>
+    </link>
+
     <link name="backfoot_link">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://maria_inchworm_description/meshes/inchworm_foot.obj"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <!-- Joints -->
+
+    <joint name="main_b_joint" type="continuous">
+        <origin xyz="0.0 0.0 0.0" rpy="-1.5707 0 0"/>
+        <parent link="inchworm_main"/>
+        <child link="b_link"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+
+    <joint name="b_frontleg_joint" type="continuous">
+        <origin xyz="0.1633 0.0 0.0" rpy="0 0 0"/>
+        <parent link="b_link"/>
+        <child link="frontleg_link"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+
+    <joint name="frontleg_frontfoot_joint" type="continuous">
+        <origin xyz="0.0573 0.0 0.0" rpy="1.5707 0.0 -1.5707"/>
+        <parent link="frontleg_link"/>
+        <child link="frontfoot_link"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+
+    <joint name="main_c_joint" type="continuous">
+        <origin xyz="0.0 0.0 0.0" rpy="-1.5707 3.1416 0"/>
+        <parent link="inchworm_main"/>
+        <child link="c_link"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+
+    <joint name="c_backleg_joint" type="continuous">
+        <origin xyz="0.1633 0.0 0.0" rpy="0 0 0"/>
+        <parent link="c_link"/>
+        <child link="backleg_link"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+
+    <joint name="backleg_backfoot_joint" type="continuous">
+        <origin xyz="0.0573 0.0 0.0" rpy="1.5707 0.0 -1.5707"/>
+        <parent link="backleg_link"/>
+        <child link="backfoot_link"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+    
+    <!-- <link name="backfoot_link">
         <visual>
             <origin xyz="0 0 0" rpy="0 0 0"/>
             <geometry>
@@ -98,5 +197,5 @@
             </geometry>
         </visual>
     </link>
-    
+     -->
 </robot>

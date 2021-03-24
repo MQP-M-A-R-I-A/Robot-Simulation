@@ -11,8 +11,7 @@ Panels:
         - /Inchworm1/Links1/b_link1
         - /Inchworm1/Links1/backfoot_link1
         - /Inchworm1/Links1/backleg_link1
-        - /Inchworm1/Links1/c_link1
-        - /Inchworm1/Links1/front_leg_link1
+        - /Inchworm1/Links1/inchworm_main1
       Splitter Ratio: 0.5
     Tree Height: 873
   - Class: rviz/Selection
@@ -64,7 +63,7 @@ Visualization Manager:
       Collision Enabled: false
       Enabled: true
       Links:
-        All Links Enabled: false
+        All Links Enabled: true
         Expand Joint Details: false
         Expand Link Details: false
         Expand Tree: false
@@ -73,7 +72,7 @@ Visualization Manager:
           Alpha: 1
           Show Axes: true
           Show Trail: false
-          Value: false
+          Value: true
         backfoot_link:
           Alpha: 1
           Show Axes: true
@@ -86,19 +85,13 @@ Visualization Manager:
           Value: true
         c_link:
           Alpha: 1
-          Show Axes: true
-          Show Trail: false
-          Value: true
-        front_foot_link:
-          Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        front_leg_link:
+        inchworm_main:
           Alpha: 1
           Show Axes: true
           Show Trail: false
-          Value: true
       Name: Inchworm
       Robot Description: robot_description
       TF Prefix: ""
@@ -109,7 +102,7 @@ Visualization Manager:
   Global Options:
     Background Color: 48; 48; 48
     Default Light: true
-    Fixed Frame: backfoot_link
+    Fixed Frame: inchworm_main
     Frame Rate: 30
   Name: root
   Tools:
@@ -133,25 +126,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 0.7007421851158142
+      Distance: 0.6481996178627014
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 0.035788170993328094
-        Y: 0.03749169409275055
-        Z: 0.21320019662380219
+        X: -0.04976693168282509
+        Y: -0.06832390278577805
+        Z: -0.01825592666864395
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.15539908409118652
+      Pitch: 0.19539931416511536
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 0.6090443134307861
+      Yaw: 1.3690773248672485
     Saved: ~
 Window Geometry:
   Displays:

@@ -34,5 +34,69 @@
             </geometry>
         </visual>
     </link>
+
+    <joint name="back_leg_c_link_joint" type="continuous">
+        <origin xyz="0.0 0.0 0.0573" rpy="-1.5707 2.7925 -3.1416"/>
+        <parent link="backleg_link"/>
+        <child link="c_link"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+
+    <link name="c_link">
+        <visual>
+            <origin xyz="0 0 0.045" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://maria_inchworm_description/meshes/inchworm_clink.obj"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <joint name="b_c_link_joint" type="continuous">
+        <origin xyz="0.0 0.1633 0.0" rpy="0 0 -2.4434"/>
+        <parent link="c_link"/>
+        <child link="b_link"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+
+    <link name="b_link">
+        <visual>
+            <origin xyz="0 0 0.045" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://maria_inchworm_description/meshes/inchworm_blink.obj"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <joint name="b_front_leg_joint" type="continuous">
+        <origin xyz="0.0 0.1633 0.0" rpy="0 0 -0.3491"/>
+        <parent link="b_link"/>
+        <child link="front_leg_link"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+
+    <link name="front_leg_link">
+        <visual>
+            <origin xyz="0.0 0.0573 0" rpy="1.5707 3.14159 0"/>
+            <geometry>
+                <mesh filename="package://maria_inchworm_description/meshes/inchworm_leg.obj"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <joint name="front_leg_foot_joint" type="continuous">
+        <origin xyz="0.0 0.0573 0.0" rpy="1.5707 0 0"/>
+        <parent link="front_leg_link"/>
+        <child link="front_foot_link"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+
+    <link name="front_foot_link">
+        <visual>
+            <origin xyz="0.0 0 -0.0489" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://maria_inchworm_description/meshes/inchworm_foot.obj"/>
+            </geometry>
+        </visual>
+    </link>
     
 </robot>

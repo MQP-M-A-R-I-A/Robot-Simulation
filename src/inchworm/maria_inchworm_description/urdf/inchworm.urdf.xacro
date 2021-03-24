@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro" name="inchworm">
+
+    <!-- Import Gazebo ROS Control Plugin -->
+    <gazebo>
+        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+            <robotNamespace>/inchworm</robotNamespace>
+        </plugin>
+    </gazebo>
+
+    <!-- Links -->
+    
+    <link name="link1">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://maria_inchworm_description/meshes/InchwormFoot.obj"/>
+            </geometry>
+        </visual>
+    </link>
+    
+</robot>

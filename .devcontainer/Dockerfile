@@ -46,6 +46,8 @@ RUN apt update && apt install --no-install-recommends -y \
     ros-melodic-joint-state-publisher \
     ros-melodic-joint-state-publisher-gui
 
+RUN apt update && apt install --no-install-recommends -y nano
+
 RUN rm -rf /var/lib/apt/lists/*
 
 # Set up Catkin Workspace

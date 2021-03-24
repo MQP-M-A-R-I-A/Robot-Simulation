@@ -10,11 +10,27 @@
 
     <!-- Links -->
     
-    <link name="link1">
+    <link name="backfoot_link">
         <visual>
             <origin xyz="0 0 0" rpy="0 0 0"/>
             <geometry>
-                <mesh filename="package://maria_inchworm_description/meshes/InchwormFoot.obj"/>
+                <mesh filename="package://maria_inchworm_description/meshes/inchworm_foot.obj"/>
+            </geometry>
+        </visual>
+    </link>
+    
+    <joint name="back_foot_leg_joint" type="continuous">
+        <origin xyz="0.0 0.0 0.0489" rpy="0.0 0.0 0.0"/>
+        <parent link="backfoot_link"/>
+        <child link="backleg_link"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+
+    <link name="backleg_link">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://maria_inchworm_description/meshes/inchworm_leg.obj"/>
             </geometry>
         </visual>
     </link>

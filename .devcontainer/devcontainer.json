@@ -32,7 +32,8 @@
 		"streetsidesoftware.code-spell-checker",
 		"ms-iot.vscode-ros",
 		"gruntfuggly.todo-tree",
-		"redhat.vscode-yaml"
+		"redhat.vscode-yaml",
+		"smilerobotics.urdf",
 	],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.

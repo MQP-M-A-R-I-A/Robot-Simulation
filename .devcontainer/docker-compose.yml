@@ -15,6 +15,7 @@ services:
     volumes:
       - ../.:/home/catkin_ws
       - /tmp/.X11-unix:/tmp/.X11-unix
+      - /tmp/.docker.xauth:/tmp/.docker.xauth:rw
 
     # For attaching shells
     stdin_open: true # docker run -i
@@ -24,8 +25,8 @@ services:
     runtime: nvidia
     # Environment Variables
     environment:
-      - DISPLAY=:0  # Echoing DISPLAY variable in scripts returns 1, so you need to specify here (should work for most or all devices)
-      # - XAUTHORITY=${XAUTH}
+      - DISPLAY=:0 # Echoing DISPLAY variable in scripts returns 1, so you need to specify here (should work for most or all devices)
+      - XAUTHORITY=${XAUTH}
       - QT_X11_NO_MITSHM=1
       - NVIDIA_VISIBLE_DEVICES=all
       - NVIDIA_DRIVER_CAPABILITIES=all

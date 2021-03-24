@@ -37,22 +37,22 @@ RUN sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main"
 
 # Install necessary components
 RUN apt update && apt install --no-install-recommends -y \
+    ros-melodic-rviz \
     ros-melodic-gazebo-ros \
     ros-melodic-gazebo-ros-control \
     ros-melodic-robot-state-publisher \
     ros-melodic-xacro \
     ros-melodic-ros-control \
     ros-melodic-ros-controllers \
-    ros-melodic-controller-manager
+    ros-melodic-controller-manager \
+    ros-melodic-joint-state-publisher \
+    ros-melodic-joint-state-publisher-gui
 
 RUN rm -rf /var/lib/apt/lists/*
 
 # Set up Catkin Workspace
 ENV CATKIN_WS=/home/catkin_ws
 RUN mkdir -p $CATKIN_WS/src
-
-RUN echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
-RUN echo "CATKIN_WS=${CATKIN_WS}" >> ~/.bashrc
 
 WORKDIR ${CATKIN_WS}
 

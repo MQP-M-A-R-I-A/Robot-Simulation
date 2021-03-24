@@ -18,6 +18,8 @@ You will also need Docker-Compose: https://docs.docker.com/compose/install/
 
 Finally, you will need nVidia Docker: https://github.com/NVIDIA/nvidia-docker
 
+You will also need to set up your ssh-add agent to automatically pass your ssh keys to the devcontainer. Follow the instructions here: https://code.visualstudio.com/docs/remote/containers#_sharing-git-credentials-with-your-container
+
 ### [Native & Docker] build environment + dependencies
 Once you are in your environment (and have downloaded the repo), it's time to `catkin_make` the project.
 1. Update the ROS dependencies list:

@@ -45,7 +45,9 @@
 	"shutdownAction": "stopCompose",
 
 	// Uncomment the next line to run commands after the container is created - for example installing curl.
-	"postCreateCommand": "sudo usermod -u $USER_ID user && sudo groupmod -g $GROUP_ID user",
+	// "postCreateCommand": "sudo usermod -u $USER_ID user && sudo groupmod -g $GROUP_ID user",
+
+	"postCreateCommand": "sudo usermod -u $USER_ID user && sudo groupmod -g $GROUP_ID user && echo \"source /opt/ros/melodic/setup.bash\" >> /home/user/.bashrc && echo \"source /home/catkin_ws/devel/setup.bash\" >> /home/user/.bashrc",
 
 	// Run command locally before connecting to container
 	"initializeCommand": "bash .devcontainer/init.sh",

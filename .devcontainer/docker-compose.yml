@@ -3,27 +3,29 @@ services:
   maria-ros:
     container_name: maria-ros
     image: maria-ros:1.0
-    env_file:
-      - build.env
     build: 
       context: .
       dockerfile: Dockerfile
       args:
         USER_ID: ${USER_ID}   # Pass current user at build to avoid file permissions issues
         GROUP_ID: ${GROUP_ID}  # Pass current group at build to avoid file permissions issues
-
+    env_file: 
+      - build.env
+      # - xauth.env
     volumes:
       - ../.:/home/catkin_ws
+      - /tmp/.X11-unix:/tmp/.X11-unix
 
     # For attaching shells
     stdin_open: true # docker run -i
     tty: true        # docker run -t
 
     # Set up GPU
-    # runtime: nvidia
+    runtime: nvidia
     # Environment Variables
     environment:
-      - DISPLAY
+      - DISPLAY=:0  # Echoing DISPLAY variable in scripts returns 1, so you need to specify here (should work for most or all devices)
+      # - XAUTHORITY=${XAUTH}
       - QT_X11_NO_MITSHM=1
       - NVIDIA_VISIBLE_DEVICES=all
       - NVIDIA_DRIVER_CAPABILITIES=all
@@ -34,7 +36,7 @@ services:
     # Startup Command
     network_mode: "host"
     privileged: true
-
+    user: user
     # Required for ptrace-based debuggers like C++, Go, and Rust
     cap_add:
     - SYS_PTRACE

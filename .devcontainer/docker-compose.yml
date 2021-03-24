@@ -3,9 +3,17 @@ services:
   maria-ros:
     container_name: maria-ros
     image: maria-ros:1.0
-    build: .
+    env_file:
+      - build.env
+    build: 
+      context: .
+      dockerfile: Dockerfile
+      args:
+        USER_ID: ${USER_ID}   # Pass current user at build to avoid file permissions issues
+        GROUP_ID: ${GROUP_ID}  # Pass current group at build to avoid file permissions issues
+
     volumes:
-      - ../.:/root/catkin_ws
+      - ../.:/home/catkin_ws
 
     # For attaching shells
     stdin_open: true # docker run -i

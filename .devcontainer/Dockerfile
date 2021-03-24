@@ -37,11 +37,9 @@ RUN sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main"
 
 # Install necessary components
 RUN apt update && apt install --no-install-recommends -y \
-    ros-melodic-rviz \
-    ros-melodic-gazebo-ros \
+    ros-melodic-desktop-full \
     ros-melodic-gazebo-ros-control \
     ros-melodic-robot-state-publisher \
-    ros-melodic-xacro \
     ros-melodic-ros-control \
     ros-melodic-ros-controllers \
     ros-melodic-controller-manager \

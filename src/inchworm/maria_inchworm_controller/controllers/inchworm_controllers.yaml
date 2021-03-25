@@ -1,0 +1,28 @@
+inchworm:
+  main_b_joint_controller:
+    type: position_controllers/JointPositionController
+    joint: main_b_joint
+  
+  b_frontleg_joint_controller:
+    type: position_controllers/JointPositionController
+    joint: b_frontleg_joint
+  
+  frontleg_frontfoot_joint_controller:
+    type: position_controllers/JointPositionController
+    joint: frontleg_frontfoot_joint
+
+  main_c_joint_controller:
+    type: position_controllers/JointPositionController
+    joint: main_c_joint
+  
+  c_backleg_joint_controller:
+    type: position_controllers/JointPositionController
+    joint: c_backleg_joint
+  
+  backleg_backfoot_joint_controller:
+    type: position_controllers/JointPositionController
+    joint: backleg_backfoot_joint
+
+  joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 50

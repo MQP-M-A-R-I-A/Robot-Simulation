@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <launch>
 
-  <include file="$(find maria_inchworm_description)/launch/inchworm_description.launch"/>
+  <include file="$(find inchworm_description)/launch/inchworm_description.launch"/>
 
   <node name="joint_state_publisher" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" />
 
@@ -10,5 +10,5 @@
     <param name="tf_prefix" type="string" value="" />
   </node>
 
-  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find maria_inchworm_description)/rviz/inchworm_viz.rviz" required="true" />
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find inchworm_description)/rviz/inchworm_viz.rviz" required="true" />
 </launch>

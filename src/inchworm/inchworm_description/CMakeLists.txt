@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(maria_gazebo)
+project(inchworm_description)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
@@ -8,17 +8,10 @@ project(maria_gazebo)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-  controller_manager
-  effort_controllers
-  gazebo_ros
-  gazebo_ros_control
-  joint_state_controller
-  maria_block_description
-  maria_inchworm_description
-  position_controllers
+  joint_state_publisher
   robot_state_publisher
-  roslaunch
-  rostopic
+  urdf
+  xacro
 )
 
 ## System dependencies are found with CMake's conventions
@@ -112,8 +105,8 @@ find_package(catkin REQUIRED COMPONENTS
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
 #  INCLUDE_DIRS include
-#  LIBRARIES maria_gazebo
-#  CATKIN_DEPENDS controller_manager effort_controllers gazebo_ros gazebo_ros_control joint_state_controller maria_block_description maria_inchworm_description position_controllers robot_state_publisher roslaunch rostopic
+#  LIBRARIES maria_inchworm_description
+#  CATKIN_DEPENDS joint_State_publisher robot_state_publisher rviz urdf xacro
 #  DEPENDS system_lib
 )
 
@@ -130,7 +123,7 @@ include_directories(
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
-#   src/${PROJECT_NAME}/maria_gazebo.cpp
+#   src/${PROJECT_NAME}/maria_inchworm_description.cpp
 # )
 
 ## Add cmake target dependencies of the library
@@ -141,7 +134,7 @@ include_directories(
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-# add_executable(${PROJECT_NAME}_node src/maria_gazebo_node.cpp)
+# add_executable(${PROJECT_NAME}_node src/maria_inchworm_description_node.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -205,7 +198,7 @@ include_directories(
 #############
 
 ## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_maria_gazebo.cpp)
+# catkin_add_gtest(${PROJECT_NAME}-test test/test_maria_inchworm_description.cpp)
 # if(TARGET ${PROJECT_NAME}-test)
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()

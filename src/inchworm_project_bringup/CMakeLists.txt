@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(maria_block_description)
+project(inchworm_project_bringup)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
@@ -8,10 +8,8 @@ project(maria_block_description)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-  joint_state_publisher
-  robot_state_publisher
-  urdf
-  xacro
+  roscpp
+  rospy
 )
 
 ## System dependencies are found with CMake's conventions
@@ -105,8 +103,8 @@ find_package(catkin REQUIRED COMPONENTS
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
 #  INCLUDE_DIRS include
-#  LIBRARIES maria_block_description
-#  CATKIN_DEPENDS joint_State_publisher robot_state_publisher rviz urdf xacro
+#  LIBRARIES inchworm_projectbringup
+#  CATKIN_DEPENDS roscpp rospy
 #  DEPENDS system_lib
 )
 
@@ -123,7 +121,7 @@ include_directories(
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
-#   src/${PROJECT_NAME}/maria_block_description.cpp
+#   src/${PROJECT_NAME}/maria_bringup.cpp
 # )
 
 ## Add cmake target dependencies of the library
@@ -134,7 +132,7 @@ include_directories(
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-# add_executable(${PROJECT_NAME}_node src/maria_block_description_node.cpp)
+# add_executable(${PROJECT_NAME}_node src/maria_bringup_node.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -198,7 +196,7 @@ include_directories(
 #############
 
 ## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_maria_block_description.cpp)
+# catkin_add_gtest(${PROJECT_NAME}-test test/test_maria_bringup.cpp)
 # if(TARGET ${PROJECT_NAME}-test)
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()

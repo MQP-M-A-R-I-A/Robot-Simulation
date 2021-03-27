@@ -7,6 +7,7 @@ Panels:
         - /Global Options1
         - /Status1
         - /Inchworm1
+        - /Inchworm1/Status1
         - /Inchworm1/Links1
         - /Inchworm1/Links1/b_link1
         - /Inchworm1/Links1/backfoot_ee_link1
@@ -112,6 +113,10 @@ Visualization Manager:
           Alpha: 1
           Show Axes: true
           Show Trail: false
+        world:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
       Name: Inchworm
       Robot Description: robot_description
       TF Prefix: ""
@@ -122,7 +127,7 @@ Visualization Manager:
   Global Options:
     Background Color: 48; 48; 48
     Default Light: true
-    Fixed Frame: inchworm_main
+    Fixed Frame: world
     Frame Rate: 30
   Name: root
   Tools:

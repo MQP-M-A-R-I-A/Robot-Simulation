@@ -3,7 +3,7 @@
 
     <arg name="namespace" default=""/>
 
-    <rosparam file="$(find maria_inchworm_controller)/controllers/inchworm_controllers.yaml" command="load"/>
+    <rosparam file="$(find inchworm_controller)/controllers/inchworm_controllers.yaml" command="load"/>
 
     <node name="controller_spawner" pkg="controller_manager" type="spawner"
         ns = "$(arg namespace)f"

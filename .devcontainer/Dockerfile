@@ -44,17 +44,13 @@ RUN apt update && apt install --no-install-recommends -y \
     ros-melodic-ros-controllers \
     ros-melodic-controller-manager \
     ros-melodic-joint-state-publisher \
-    ros-melodic-joint-state-publisher-gui
-
-RUN apt update && apt install --no-install-recommends -y nano
+    ros-melodic-joint-state-publisher-gui \
+    python-pip \
+    nano
 
 RUN rm -rf /var/lib/apt/lists/*
 
-# Set up Catkin Workspace
-ENV CATKIN_WS=/home/catkin_ws
-RUN mkdir -p $CATKIN_WS/src
-
-WORKDIR ${CATKIN_WS}
+RUN pip install numpy
 
 # Set up User to fix file permission errors
 ARG USERNAME=user
@@ -63,11 +59,16 @@ ARG USER_GID=1000
 
 # Create the user
 RUN groupadd --gid $USER_GID $USERNAME \
-    && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME \
-    #
-    # [Optional] Add sudo support. Omit if you don't need to install software after connecting.
-    && apt-get update \
+    && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME
+
+# [Optional] Add sudo support. Omit if you don't need to install software after connecting.
+RUN apt-get update \
     && apt-get install -y sudo \
     && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
-    && chmod 0440 /etc/sudoers.d/$USERNAME \
-    && chown user $CATKIN_WS
+    && chmod 0440 /etc/sudoers.d/$USERNAME
+
+# Set up Catkin Workspace
+ENV CATKIN_WS=/home/user/catkin_ws
+RUN mkdir -p $CATKIN_WS && chown $USERNAME $CATKIN_WS
+
+WORKDIR ${CATKIN_WS}

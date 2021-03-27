@@ -13,7 +13,7 @@ services:
       - build.env
       # - xauth.env
     volumes:
-      - ../.:/home/catkin_ws
+      - ../.:/home/user/catkin_ws
       - /tmp/.X11-unix:/tmp/.X11-unix
       - /tmp/.docker.xauth:/tmp/.docker.xauth:rw
 

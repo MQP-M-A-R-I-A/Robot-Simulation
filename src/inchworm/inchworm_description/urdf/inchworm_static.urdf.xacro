@@ -26,18 +26,24 @@
     </joint>
 
     <!-- Links -->
-    <link name="inchworm_main"/>
+    <link name="inchworm_main">
+        <inertial>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <mass value="0.001"/>
+            <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+        </inertial>
+    </link>
 
     <link name="b_link">
         <visual>
             <origin xyz="0 0 0" rpy="0 0 0"/>
             <geometry>
-                <mesh filename="package://inchworm_description/meshes/inchworm_blink.obj"/>
+                <mesh filename="package://inchworm_description/meshes/inchworm_blink.dae"/>
             </geometry>
         </visual>
         <inertial>
             <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
-            <mass value="0.0"/>
+            <mass value="0.1"/>
             <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
         </inertial>
     </link>
@@ -46,12 +52,12 @@
         <visual>
             <origin xyz="0 0 0" rpy="0 0 3.1416"/>
             <geometry>
-                <mesh filename="package://inchworm_description/meshes/inchworm_leg.obj"/>
+                <mesh filename="package://inchworm_description/meshes/inchworm_leg.dae"/>
             </geometry>
         </visual>
         <inertial>
             <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
-            <mass value="0.0"/>
+            <mass value="0.1"/>
             <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
         </inertial>
     </link>
@@ -60,30 +66,34 @@
         <visual>
             <origin xyz="0 0 0" rpy="0 0 0"/>
             <geometry>
-                <mesh filename="package://inchworm_description/meshes/inchworm_foot.obj"/>
+                <mesh filename="package://inchworm_description/meshes/inchworm_foot.dae"/>
             </geometry>
         </visual>
         <inertial>
             <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
-            <mass value="0.0"/>
+            <mass value="0.1"/>
             <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
         </inertial>
     </link>
 
     <link name="frontfoot_ee_link">
-        
+        <inertial>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <mass value="0.1"/>
+            <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+        </inertial>
     </link>
 
     <link name="c_link">
         <visual>
             <origin xyz="0 0 0" rpy="0 0 0"/>
             <geometry>
-                <mesh filename="package://inchworm_description/meshes/inchworm_clink.obj"/>
+                <mesh filename="package://inchworm_description/meshes/inchworm_clink.dae"/>
             </geometry>
         </visual>
         <inertial>
             <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
-            <mass value="0.0"/>
+            <mass value="0.1"/>
             <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
         </inertial>
     </link>
@@ -92,12 +102,12 @@
         <visual>
             <origin xyz="0 0 0" rpy="0 0 3.1416"/>
             <geometry>
-                <mesh filename="package://inchworm_description/meshes/inchworm_leg.obj"/>
+                <mesh filename="package://inchworm_description/meshes/inchworm_leg.dae"/>
             </geometry>
         </visual>
         <inertial>
             <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
-            <mass value="0.0"/>
+            <mass value="0.1"/>
             <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
         </inertial>
     </link>
@@ -106,18 +116,22 @@
         <visual>
             <origin xyz="0 0 0" rpy="0 0 0"/>
             <geometry>
-                <mesh filename="package://inchworm_description/meshes/inchworm_foot.obj"/>
+                <mesh filename="package://inchworm_description/meshes/inchworm_foot.dae"/>
             </geometry>
         </visual>
         <inertial>
             <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
-            <mass value="0.0"/>
+            <mass value="0.1"/>
             <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
         </inertial>
     </link>
 
     <link name="backfoot_ee_link">
-        
+        <inertial>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <mass value="0.1"/>
+            <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+        </inertial>
     </link>
 
     <!-- Joints -->

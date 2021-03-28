@@ -1,26 +1,29 @@
 <?xml version="1.0"?>
 <launch>
 
-    <arg name="namespace" default=""/>
+    <arg name="namespace" default="/inchworm_static"/>
     <arg name="x_pos" default="0"/>
     <arg name="y_pos" default="0"/>
-    <arg name="z_pos" default="0.3"/> <!--0.195165-->
+    <arg name="z_pos" default="0.3"/>
+    <!-- Change this to another world if desired -->
     <arg name="world" default="worlds/empty.world"/>
 
     <include file="$(find gazebo_ros)/launch/empty_world.launch">
-        <arg name="world_name"      value="$(arg world)"/>   <!-- Change this to another world if desired -->
+        <arg name="world_name"      value="$(arg world)"/>
         <arg name="paused"          value="false"/>
         <arg name="use_sim_time"    value="true"/>
         <arg name="gui"             value="true"/>
         <arg name="headless"        value="false"/>
         <arg name="debug"           value="false"/>
         <arg name="verbose"         value="false"/>
-        <arg name="output"          value="log"/>
+        <arg name="output"          value="screen"/>
         <arg name="gui_required"    value="true"/>
     </include>
 
     <!-- Import Inchworm Description -->
-    <include file="$(find inchworm_description)/launch/static_inchworm_description.launch"/>
+    <include file="$(find inchworm_description)/launch/static_inchworm_description.launch">
+        <arg name="namespace"       value="$(arg namespace)"/>
+    </include>
 
     <!-- Start ROS Control -->
     <!-- <include file="$(find inchworm_controller)/launch/inchworm_controllers.launch">
@@ -28,8 +31,8 @@
     </include> -->
 
     <!-- Spawn Inchworm in Gazebo -->
-    <node pkg="gazebo_ros" type="spawn_model" name="spawn_urdf"  
-        args="-urdf -x $(arg x_pos) -y $(arg y_pos) -z $(arg z_pos) -param robot_description -model inchworm_static"/>
+    <node pkg="gazebo_ros" type="spawn_model" name="spawn_urdf" output="screen"
+        args="-urdf -x $(arg x_pos) -y $(arg y_pos) -z $(arg z_pos) -param $(arg namespace)/robot_description -model myfirst"/>
 
     <!-- Open RVIZ -->
     <!-- <node name="rviz" pkg="rviz" type="rviz" args="-d $(find inchworm_description)/rviz/inchworm_viz.rviz"/> -->

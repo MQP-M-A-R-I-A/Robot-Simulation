@@ -1,6 +1,5 @@
 <?xml version="1.0"?>
 <launch>
-
-  <param name="robot_description" command="$(find xacro)/xacro '$(find inchworm_description)/urdf/inchworm_static.urdf.xacro'" />
-
+  <arg name="namespace" default=""/>
+  <param name="$(arg namespace)/robot_description" command="$(find xacro)/xacro '$(find inchworm_description)/urdf/inchworm_static.urdf.xacro'" />
 </launch>

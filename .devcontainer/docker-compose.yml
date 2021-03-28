@@ -16,6 +16,7 @@ services:
       - ../.:/home/user/catkin_ws
       - /tmp/.X11-unix:/tmp/.X11-unix
       - /tmp/.docker.xauth:/tmp/.docker.xauth:rw
+      - /run/user/1000:/run/user/1000
 
     # For attaching shells
     stdin_open: true # docker run -i

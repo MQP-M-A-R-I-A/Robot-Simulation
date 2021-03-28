@@ -7,7 +7,7 @@
     <!-- Import Gazebo ROS Control Plugin -->
     <gazebo>
         <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
-            <robotNamespace>/inchworm</robotNamespace>
+            <robotNamespace>/inchworm_static</robotNamespace>
         </plugin>
     </gazebo>
 

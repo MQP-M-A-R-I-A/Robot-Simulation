@@ -18,6 +18,7 @@ XAUTH=/tmp/.docker.xauth
 
 printf "XSOCK=%s\n" "$XSOCK" >> $BUILD_ENV
 printf "XAUTH=%s\n" "$XAUTH" >> $BUILD_ENV
+printf "XDG_RUNTIME=%s\n" "$XDG_RUNTIME_DIR" >> $BUILD_ENV
 
 rm $XAUTH && touch $XAUTH
 xauth nlist $DISPLAY | sed -e 's/^..../ffff/' | xauth -f $XAUTH nmerge -

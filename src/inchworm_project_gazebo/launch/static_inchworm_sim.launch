@@ -35,6 +35,6 @@
         args="-urdf -x $(arg x_pos) -y $(arg y_pos) -z $(arg z_pos) -param $(arg namespace)/robot_description -model inchworm_static"/>
 
     <!-- Open RVIZ -->
-    <!-- <node name="rviz" pkg="rviz" type="rviz" args="-d $(find inchworm_description)/rviz/inchworm_viz.rviz"/> -->
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find inchworm_description)/rviz/inchworm_viz.rviz"/>
 
 </launch>

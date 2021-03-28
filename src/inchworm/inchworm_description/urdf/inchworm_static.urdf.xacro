@@ -134,6 +134,17 @@
         </inertial>
     </link>
 
+    <!-- Joint Transmission Macro -->
+    <xacro:macro name="joint_transmission" params="prefix">
+        <transmission name="${prefix}_transmission">
+            <type>transmission_interface/SimpleTransmission</type>
+            <joint name="${prefix}_joint">
+                <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+            </joint>
+            <actuator name="${prefix}_motor"></actuator>
+        </transmission>
+    </xacro:macro>
+
     <!-- Joints -->
 
     <joint name="main_b_joint" type="continuous">
@@ -142,6 +153,7 @@
         <child link="b_link"/>
         <axis xyz="0 0 1"/>
     </joint>
+    <xacro:joint_transmission prefix="main_b"/>
 
     <joint name="b_frontleg_joint" type="continuous">
         <origin xyz="0.1633 0.0 0.0" rpy="0 0 0"/>
@@ -149,6 +161,7 @@
         <child link="frontleg_link"/>
         <axis xyz="0 0 1"/>
     </joint>
+    <xacro:joint_transmission prefix="b_frontleg"/>
 
     <joint name="frontleg_frontfoot_joint" type="continuous">
         <origin xyz="0.0573 0.0 0.0" rpy="1.5707 0.0 -1.5707"/>
@@ -156,6 +169,7 @@
         <child link="frontfoot_link"/>
         <axis xyz="0 0 1"/>
     </joint>
+    <xacro:joint_transmission prefix="frontleg_frontfoot"/>
 
     <joint name="frontfoot_ee_joint" type="fixed">
         <origin xyz="0.0 0.0 -0.0489" rpy="0.0 0.0 0.0"/>
@@ -169,6 +183,7 @@
         <child link="c_link"/>
         <axis xyz="0 0 1"/>
     </joint>
+    <xacro:joint_transmission prefix="main_c"/>
 
     <joint name="c_backleg_joint" type="continuous">
         <origin xyz="0.1633 0.0 0.0" rpy="0 0 0"/>
@@ -176,6 +191,7 @@
         <child link="backleg_link"/>
         <axis xyz="0 0 1"/>
     </joint>
+    <xacro:joint_transmission prefix="c_backleg"/>
 
     <joint name="backleg_backfoot_joint" type="continuous">
         <origin xyz="0.0573 0.0 0.0" rpy="1.5707 0.0 -1.5707"/>
@@ -183,6 +199,7 @@
         <child link="backfoot_link"/>
         <axis xyz="0 0 1"/>
     </joint>
+    <xacro:joint_transmission prefix="backleg_backfoot"/>
 
     <joint name="backfoot_ee_joint" type="fixed">
         <origin xyz="0.0 0.0 -0.0489" rpy="0.0 0.0 0.0"/>

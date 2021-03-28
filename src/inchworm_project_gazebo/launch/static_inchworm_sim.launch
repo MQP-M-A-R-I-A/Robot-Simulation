@@ -25,8 +25,8 @@
         <arg name="namespace"       value="$(arg namespace)"/>
     </include>
 
-    <!-- Start ROS Control -->
-    <include file="$(find inchworm_controller)/launch/inchworm_controllers.launch">
+    <!-- Start ROS Controllers -->
+    <include file="$(find inchworm_controller)/launch/inchworm_ros_controllers.launch">
         <arg name="namespace"       value="$(arg namespace)"/>
     </include>
 

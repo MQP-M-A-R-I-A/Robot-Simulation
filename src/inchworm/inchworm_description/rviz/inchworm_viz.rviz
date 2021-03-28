@@ -6,15 +6,8 @@ Panels:
       Expanded:
         - /Global Options1
         - /Status1
-        - /Inchworm1
-        - /Inchworm1/Status1
-        - /Inchworm1/Links1
-        - /Inchworm1/Links1/b_link1
-        - /Inchworm1/Links1/backfoot_ee_link1
-        - /Inchworm1/Links1/backfoot_link1
-        - /Inchworm1/Links1/backleg_link1
-        - /Inchworm1/Links1/frontfoot_ee_link1
-        - /Inchworm1/Links1/inchworm_main1
+        - /Inchworm Static1
+        - /Inchworm Static1/Status1
       Splitter Ratio: 0.5
     Tree Height: 873
   - Class: rviz/Selection
@@ -73,21 +66,21 @@ Visualization Manager:
         Link Tree Style: Links in Alphabetic Order
         b_link:
           Alpha: 1
-          Show Axes: true
+          Show Axes: false
           Show Trail: false
           Value: true
         backfoot_ee_link:
           Alpha: 1
-          Show Axes: true
+          Show Axes: false
           Show Trail: false
         backfoot_link:
           Alpha: 1
-          Show Axes: true
+          Show Axes: false
           Show Trail: false
           Value: true
         backleg_link:
           Alpha: 1
-          Show Axes: true
+          Show Axes: false
           Show Trail: false
           Value: true
         c_link:
@@ -97,7 +90,7 @@ Visualization Manager:
           Value: true
         frontfoot_ee_link:
           Alpha: 1
-          Show Axes: true
+          Show Axes: false
           Show Trail: false
         frontfoot_link:
           Alpha: 1
@@ -111,14 +104,14 @@ Visualization Manager:
           Value: true
         inchworm_main:
           Alpha: 1
-          Show Axes: true
+          Show Axes: false
           Show Trail: false
         world:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-      Name: Inchworm
-      Robot Description: robot_description
+      Name: Inchworm Static
+      Robot Description: /inchworm_static/robot_description
       TF Prefix: ""
       Update Interval: 0
       Value: true
@@ -151,16 +144,16 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 0.7898528575897217
+      Distance: 1.696187138557434
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: -0.04976693168282509
-        Y: -0.06832390278577805
-        Z: -0.01825592666864395
+        X: -0.006970223970711231
+        Y: -0.06055566668510437
+        Z: -0.08711466193199158
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false

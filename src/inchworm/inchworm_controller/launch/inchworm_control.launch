@@ -3,6 +3,6 @@
 
     <arg name="namespace" default="/inchworm_static"/>
 
-    <node name="main_controller" pkg="inchworm_controller" type="controller.py" ns="$(arg namespace)"/>
+    <node name="main_controller" pkg="inchworm_controller" type="inchworm_control.py" ns="$(arg namespace)"/>
 
 </launch>

@@ -148,7 +148,7 @@
     <!-- Joints -->
 
     <joint name="main_b_joint" type="continuous">
-        <origin xyz="0.0 0.0 0.0" rpy="-1.5707 0 0"/>
+        <origin xyz="0.0 0.0 0.0" rpy="-1.5707 1.5707 0"/>
         <parent link="inchworm_main"/>
         <child link="b_link"/>
         <axis xyz="0 0 1"/>
@@ -178,7 +178,7 @@
     </joint>
 
     <joint name="main_c_joint" type="continuous">
-        <origin xyz="0.0 0.0 0.0" rpy="-1.5707 3.1416 0"/>
+        <origin xyz="0.0 0.0 0.0" rpy="-1.5707 1.5707 0"/>
         <parent link="inchworm_main"/>
         <child link="c_link"/>
         <axis xyz="0 0 1"/>

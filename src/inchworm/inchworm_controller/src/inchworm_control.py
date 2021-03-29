@@ -41,14 +41,17 @@ class Inchworm:
         self.c_backleg_pub = rospy.Publisher('c_backleg_joint_controller/command', Float64, queue_size=0)
         self.backleg_backfoot_pub = rospy.Publisher('backleg_backfoot_joint_controller/command', Float64, queue_size=0)
 
-        # Define Joint Command Values
-        # Note: DO NOT change these by hand! use 
-        self._main_b_joint_cmd = Float64(data = np.deg2rad(60))
-        self._b_frontleg_joint_cmd = Float64(data = np.deg2rad(30))
-        self._frontleg_frontfoot_joint_cmd = Float64(data = np.deg2rad(0))
-        self._main_c_joint_cmd = Float64(data = np.deg2rad(-60))
-        self._c_backleg_joint_cmd = Float64(data = np.deg2rad(-30))
-        self._backleg_backfoot_joint_cmd = Float64(data = np.deg2rad(0))
+        # Define Joint Command Variables
+        # Note: DO NOT change these by hand! Use cmd_joints() function
+        self._main_b_joint_cmd = Float64()
+        self._b_frontleg_joint_cmd = Float64()
+        self._frontleg_frontfoot_joint_cmd = Float64()
+        self._main_c_joint_cmd = Float64()
+        self._c_backleg_joint_cmd = Float64()
+        self._backleg_backfoot_joint_cmd = Float64()
+        
+        # Set to starting configuration
+        self.cmd_joints(main_joint=1.04620, frontleg_joint=0.52360, backleg_joint=-0.52360, frontfoot_joint=0, backfoot_joint=0)
 
     def run_controller(self):
         """
@@ -94,6 +97,21 @@ class Inchworm:
         """
         rospy.WARN("Ikin function not implemented yet!")
     
+    def cmd_joints(self, main_joint = None, frontleg_joint = None, backleg_joint = None, frontfoot_joint = None, backfoot_joint = None):
+        """
+        """
+        if main_joint is not None:
+            self._main_b_joint_cmd.data = -float(main_joint)/2
+            self._main_c_joint_cmd.data = float(main_joint)/2
+        if frontleg_joint is not None:
+            self._b_frontleg_joint_cmd.data = float(frontleg_joint)
+        if backleg_joint is not None:
+            self._c_backleg_joint_cmd.data = float(backleg_joint)
+        if frontfoot_joint is not None:
+            self._frontleg_frontfoot_joint_cmd.data = float(frontfoot_joint)
+        if backfoot_joint is not None:
+            self._backleg_backfoot_joint_cmd.data = float(backfoot_joint)
+
     def _cmd_joints_ros(self):
         """
             Sends commands to joints, runs in the main loop

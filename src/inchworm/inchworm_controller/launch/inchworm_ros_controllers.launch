@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<launch>    
+
+    <arg name="namespace" default=""/>
+
+    <rosparam file="$(find inchworm_controller)/controllers/inchworm_controllers.yaml" command="load"/>
+
+    <node name="controller_spawner" pkg="controller_manager" type="spawner"
+        ns = "$(arg namespace)"
+        args = " main_b_joint_controller    b_frontleg_joint_controller     frontleg_frontfoot_joint_controller
+                 main_c_joint_controller    c_backleg_joint_controller      backleg_backfoot_joint_controller
+                 joint_state_controller"
+    />
+
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" ns="$(arg namespace)">
+        <param name="publish_frequency" type="double" value="50.0"/>
+        <param name="tf_prefix" type="string" value="" />
+    </node>
+
+</launch>

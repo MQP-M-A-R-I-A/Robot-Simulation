@@ -25,16 +25,16 @@
         <arg name="namespace"       value="$(arg namespace)"/>
     </include>
 
-    <!-- Start ROS Control -->
-    <!-- <include file="$(find inchworm_controller)/launch/inchworm_controllers.launch">
+    <!-- Start ROS Controllers -->
+    <include file="$(find inchworm_controller)/launch/inchworm_ros_controllers.launch">
         <arg name="namespace"       value="$(arg namespace)"/>
-    </include> -->
+    </include>
 
     <!-- Spawn Inchworm in Gazebo -->
     <node pkg="gazebo_ros" type="spawn_model" name="spawn_urdf" output="screen"
-        args="-urdf -x $(arg x_pos) -y $(arg y_pos) -z $(arg z_pos) -param $(arg namespace)/robot_description -model myfirst"/>
+        args="-urdf -x $(arg x_pos) -y $(arg y_pos) -z $(arg z_pos) -param $(arg namespace)/robot_description -model inchworm_static"/>
 
     <!-- Open RVIZ -->
-    <!-- <node name="rviz" pkg="rviz" type="rviz" args="-d $(find inchworm_description)/rviz/inchworm_viz.rviz"/> -->
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find inchworm_description)/rviz/inchworm_viz.rviz"/>
 
 </launch>

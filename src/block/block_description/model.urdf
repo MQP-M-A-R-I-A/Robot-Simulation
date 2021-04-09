@@ -1,7 +1,0 @@
-<link name="block">
-    <inertial>
-        <mass value = "5" />
-    </inertial>
-    <visual>
-        <geometry>
-            <mesh filename="">

@@ -11,6 +11,10 @@
         </plugin>
     </gazebo>
 
+    <!-- Joint Properties -->
+    <xacro:property name="joint_speed" value="545"/>        <!-- in rpm -->
+    <xacro:property name="joint_torque" value="0.03525"/>   <!-- in N-m -->
+
     <!-- Static Joint to World Frame in Simulation -->
     <link name="world"/>
 
@@ -152,6 +156,8 @@
         <parent link="inchworm_main"/>
         <child link="b_link"/>
         <axis xyz="0 0 1"/>
+        <limit  effort="${joint_torque}"
+                velocity="${joint_speed * 2 * 3.14159 / 60 }"/>
     </joint>
     <xacro:joint_transmission prefix="main_b"/>
 
@@ -160,6 +166,8 @@
         <parent link="b_link"/>
         <child link="frontleg_link"/>
         <axis xyz="0 0 1"/>
+        <limit  effort="${joint_torque}"
+                velocity="${joint_speed * 2 * 3.14159 / 60 }"/>
     </joint>
     <xacro:joint_transmission prefix="b_frontleg"/>
 
@@ -168,6 +176,8 @@
         <parent link="frontleg_link"/>
         <child link="frontfoot_link"/>
         <axis xyz="0 0 1"/>
+        <limit  effort="${joint_torque}"
+                velocity="${joint_speed * 2 * 3.14159 / 60 }"/>
     </joint>
     <xacro:joint_transmission prefix="frontleg_frontfoot"/>
 
@@ -175,6 +185,8 @@
         <origin xyz="0.0 0.0 -0.0489" rpy="0.0 0.0 0.0"/>
         <parent link="frontfoot_link"/>
         <child link="frontfoot_ee_link"/>
+        <limit  effort="${joint_torque}"
+                velocity="${joint_speed * 2 * 3.14159 / 60 }"/>
     </joint>
 
     <joint name="main_c_joint" type="continuous">
@@ -182,6 +194,8 @@
         <parent link="inchworm_main"/>
         <child link="c_link"/>
         <axis xyz="0 0 1"/>
+        <limit  effort="${joint_torque}"
+                velocity="${joint_speed * 2 * 3.14159 / 60 }"/>
     </joint>
     <xacro:joint_transmission prefix="main_c"/>
 
@@ -190,6 +204,8 @@
         <parent link="c_link"/>
         <child link="backleg_link"/>
         <axis xyz="0 0 1"/>
+        <limit  effort="${joint_torque}"
+                velocity="${joint_speed * 2 * 3.14159 / 60 }"/>
     </joint>
     <xacro:joint_transmission prefix="c_backleg"/>
 
@@ -198,6 +214,8 @@
         <parent link="backleg_link"/>
         <child link="backfoot_link"/>
         <axis xyz="0 0 1"/>
+        <limit  effort="${joint_torque}"
+                velocity="${joint_speed * 2 * 3.14159 / 60 }"/>
     </joint>
     <xacro:joint_transmission prefix="backleg_backfoot"/>
 
@@ -205,6 +223,8 @@
         <origin xyz="0.0 0.0 -0.0489" rpy="0.0 0.0 0.0"/>
         <parent link="backfoot_link"/>
         <child link="backfoot_ee_link"/>
+        <limit  effort="${joint_torque}"
+                velocity="${joint_speed * 2 * 3.14159 / 60 }"/>
     </joint>
 
 </robot>

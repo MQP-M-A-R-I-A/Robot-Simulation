@@ -6,7 +6,7 @@
     <arg name="y_pos" default="0"/>
     <arg name="z_pos" default="0.3"/>
     <!-- Change this to another world if desired -->
-    <arg name="world" default="worlds/empty.world"/>
+    <arg name="world" default="$(find inchworm_project_gazebo)/worlds/playground.world"/>
 
     <include file="$(find gazebo_ros)/launch/empty_world.launch">
         <arg name="world_name"      value="$(arg world)"/>

@@ -31,10 +31,17 @@
     </include>
 
     <!-- Spawn Inchworm in Gazebo -->
-    <node pkg="gazebo_ros" type="spawn_model" name="spawn_urdf" output="screen"
-        args="-urdf -x $(arg x_pos) -y $(arg y_pos) -z $(arg z_pos) -param $(arg namespace)/robot_description -model inchworm_static"/>
+    <!-- <node pkg="gazebo_ros" type="spawn_model" name="spawn_urdf" output="screen"
+        args="-urdf -x $(arg x_pos) -y $(arg y_pos) -z $(arg z_pos) -param $(arg namespace)/robot_description -model inchworm_static"/> -->
 
     <!-- Open RVIZ -->
-    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find inchworm_description)/rviz/inchworm_viz.rviz"/>
+    <!-- <node name="rviz" pkg="rviz" type="rviz" args="-d $(find inchworm_description)/rviz/inchworm_viz.rviz"/> -->
+
+    <!-- Open block -->
+    <param name="$(arg namespace)/block_description" command="$(find xacro)/xacro '$(find block_description)/urdf/model.urdf'" />
+
+    <node pkg="gazebo_ros" type="spawn_model" name="spawn_model" output="screen"
+    args="-urdf -x $(arg x_pos) -y $(arg y_pos) -z $(arg z_pos) -param $(arg namespace)/block_description -model block"/>
+
 
 </launch>

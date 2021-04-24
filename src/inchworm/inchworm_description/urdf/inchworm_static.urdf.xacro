@@ -24,7 +24,7 @@
         <!-- Uncomment below if you want to test general kinematics or end effector -->
         <child link="inchworm_main"/>
         <!-- Uncomment below if you want to test front foot kinematics -->
-        <!-- <child link="backfoot_link"/>  -->
+        <!-- <child link="backfoot_ee_link"/>  -->
         <!-- Uncomment below if you want to test back foot kinematics -->
         <!-- <child link="frontfoot_link"/>  -->
     </joint>

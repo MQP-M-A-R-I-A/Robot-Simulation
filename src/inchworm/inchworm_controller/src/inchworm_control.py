@@ -157,10 +157,8 @@ class Inchworm:
         theta3 = -np.cos(-((L3)^2+(L2)^2-(L4)^2)/(2*L2*L3))
         #theta 4 is orientation
         #assuming that theta 5 does not move
-        theta = [theta1 theta2 theta3]
+        theta = [theta1, theta2, theta3]
         return theta
-
-        rospy.WARN("Ikin function not implemented yet!")
     
     def cmd_joints(self, main_joint = None, frontleg_joint = None, backleg_joint = None, frontfoot_joint = None, backfoot_joint = None):
         """

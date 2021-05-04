@@ -69,20 +69,66 @@ class Inchworm:
             self._cmd_joints_ros()
             self.rate.sleep()
 
-    def fwkin(self):
+    def tdh(self,theta, d, a , alpha)
+        """
+            DH Parameters function: takes in theta, d, a, alpha and outputs transformation matrix
+
+            Parameters
+            ----------
+            theta, d, a, alpha
+
+            Returns
+            -------
+            transformation matrix
+        """
+        tdh = [ [cos(theta), -sin(theta)*cosd(alpha), sin(theta)*sin(alpha),  a*cos(theta)],
+                [sin(theta), cos(theta)*cos(alpha),  -cos(theta)*sin(alpha), a*sin(theta)],
+                [0,          sin(alpha),             cos(alpha),             d],
+                [0,          0,                      0,                      1]]
+
+        return tdh
+
+    def fwkin(self, q, movingFoot):
         """
             Forward Kinematics function: takes in angles and outputs position
 
             Parameters
             ----------
-            None
+            q: list of joint variables
+            movingFoot: string indicating which foot is moving
 
             Returns
             -------
             None
         """
-        rospy.WARN("Fwkin function not implemented yet!")
+        L1 = 1
+        L2 = 2
+        L3 = 3
+        L4 = 4
+        L5 = 5
 
+        # will replace Ls with actual values and also replace everything with 2 precalcualted matrices
+        if (movingFoot == "front")
+            #front EE moving
+            A1 = tdh(0, L1, 0, 0)
+            A2 = tdh(theta1, 0, L2, -90)
+            A3 = tdh(90, 0, 0, 0)
+            A4 = tdh(theta2, 0, -L3, 0)
+            A5 = tdh(theta3, 0, L4, 0)
+            A6 = tdh(theta4-90, 0, -L5, 90)
+            A7 = tdh(theta5, 0, L6, 0)
+        else
+            #back EE moving
+            A1 = tdh(0, L6, 0, 0)
+            A2 = tdh(theta6, 0, L5, -90)
+            A3 = tdh(90, 0, 0, 0)
+            A4 = tdh(theta4, 0, -L4, 0)
+            A5 = tdh(theta3, 0, L3, 0)
+            A6 = tdh(theta2-90, 0, -L2, 90)
+            A7 = tdh(theta1, 0, L1, 0)
+        
+        return A1*A2*A3*A4*A5*A6*A7
+        
     def ikin(self):
         """
             Inverse Kinematics function: takes in desired position and outputs angles

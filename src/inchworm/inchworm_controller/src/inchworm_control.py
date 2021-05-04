@@ -69,7 +69,7 @@ class Inchworm:
             self._cmd_joints_ros()
             self.rate.sleep()
 
-    def tdh(self,theta, d, a , alpha)
+    def tdh(self,theta, d, a , alpha):
         """
             DH Parameters function: takes in theta, d, a, alpha and outputs transformation matrix
 
@@ -104,8 +104,9 @@ class Inchworm:
         L1 = 1
         L2 = 2
         L3 = 3
-        L4 = 4
-        L5 = 5
+        L4 = 3
+        L5 = 2
+        L6 = 1
 
         # will replace Ls with actual values and also replace everything with 2 precalcualted matrices
         if (movingFoot == "front")
@@ -129,18 +130,36 @@ class Inchworm:
         
         return A1*A2*A3*A4*A5*A6*A7
         
-    def ikin(self):
+    def ikin(self, p):
         """
             Inverse Kinematics function: takes in desired position and outputs angles
 
             Parameters
             ----------
-            None
+            p: list of EE's position in x y z coordinate frame
 
             Returns
             -------
-            None
+            q:  list of joint values theta1 - theta5
         """
+
+        L1 = 1
+        L2 = 2
+        L3 = 3
+        L4 = 3
+
+        px = p(0)
+        py = p(1)
+        pz = p(2)
+
+        theta1 = -np.arctan2(py,px)
+        theta2 = np.arctan2( ( pz-L1 ), ( np.sqrt( (px)^2 + (py)^2 ) ) ) + np.cos( ( (L2)^2 + (L4)^2 - (L3)^2 ) / (2*L2*L4))        
+        theta3 = -np.cos(-((L3)^2+(L2)^2-(L4)^2)/(2*L2*L3))
+        #theta 4 is orientation
+        #assuming that theta 5 does not move
+        theta = [theta1 theta2 theta3]
+        return theta
+
         rospy.WARN("Ikin function not implemented yet!")
     
     def cmd_joints(self, main_joint = None, frontleg_joint = None, backleg_joint = None, frontfoot_joint = None, backfoot_joint = None):

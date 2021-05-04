@@ -4,6 +4,12 @@ In order to complete the goals we have outlined, we have split the project into 
 \subsection{Simulation Environment}
 Since the Covid-19 pandemic is preventing testing with physical hardware, a full physics simulator will be used to test the motion planning software that is designed and implemented. Simple simulators will also be developed to aid in the development of complicated path planning algorithms.
 
+\begin{figure}[ht]
+    \includegraphics[width=\linewidth]{figures/GazeboSim.png}
+    \caption{Inchworm modeled in Gazebo (simulator) \cite{PastMQP}}
+    \label{fig:InchwormSim}
+\end{figure} 
+
 RVIZ will be the tool of choice to display and loosely simulate the path planning algorithms developed. Since physics is not considered, many of the variables that are not necessary for initial development of the path planning and footstep algorithms can be isolated and temporarily removed to simplify the software. These sudo-simulators can also be turned into visualizers to better understand what the system is doing when all of the algorithms are implemented and running together.
 
 To test the robot in a virtual playground, a Gazebo simulator will be used with a playground and inchworm model. Since Gazebo is a full physics simulator, the inchworm model will need to include mass, inertia, and a semi-accurate model of the end effector. This includes a method to approximate the magnetic end effector of the inchworm. A Gazebo Vacuum Gripper Plugin will be used to achieve this \cite{GazeboVacuumGripper}\cite{MagnetFeetAnswers}, since the desired effect of a magnetic gripper is similar to a vacuum gripper, and developing a new plugin for Gazebo is out of the scope of this project. If we reach our expected goals, a model of the cube will be developed, which will include its own controller to simulate the connection between different cubes.

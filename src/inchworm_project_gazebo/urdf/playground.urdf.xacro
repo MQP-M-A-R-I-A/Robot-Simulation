@@ -17,12 +17,7 @@
     <joint name="joint_name" type="fixed">
         <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
         <parent link="world"/>
-        <!-- Uncomment below if you want to test general kinematics or end effector -->
         <child link="playground"/>
-        <!-- Uncomment below if you want to test front foot kinematics -->
-        <!-- <child link="backfoot_ee_link"/>  -->
-        <!-- Uncomment below if you want to test back foot kinematics -->
-        <!-- <child link="frontfoot_link"/>  -->
     </joint>
 
     <!-- Links -->
@@ -30,13 +25,13 @@
         <visual>
             <origin xyz="0 0 0" rpy="0 0 0"/>
             <geometry>
-                <mesh filename="package://inchworm_project_gazebo/models/playground/playground.dae"/>
+                <mesh filename="package://inchworm_project_gazebo/meshes/playground.dae"/>
             </geometry>
         </visual>
         <collision>
             <origin xyz="0 0 0" rpy="0.0 0.0 0.0"/>
             <geometry>
-                <mesh filename="package://inchworm_project_gazebo/models/playground/playground.dae"/>
+                <mesh filename="package://inchworm_project_gazebo/meshes/playground.dae"/>
             </geometry>
         </collision>
         <inertial>

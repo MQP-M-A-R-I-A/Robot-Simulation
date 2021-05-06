@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
 <launch>
   <arg name="namespace" default=""/>
-  <param name="$(arg namespace)/playground_description" command="$(find xacro)/xacro '$(find inchworm_project_gazebo)/models/playground/playground.urdf.xacro'" />
+  <param name="$(arg namespace)/playground_description" command="$(find xacro)/xacro '$(find inchworm_project_gazebo)/urdf/playground.urdf.xacro'" />
 </launch>

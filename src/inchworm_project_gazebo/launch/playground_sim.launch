@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="namespace" default="/"/>
+
+    <arg name="playground_x_pos" default="0"/>
+    <arg name="playground_y_pos" default="0"/>
+    <arg name="playground_z_pos" default="0"/>
+
+    <!-- Change this to another world if desired -->
+    <arg name="world" default="$(find inchworm_project_gazebo)/worlds/playground.world"/>
+    <!-- <arg name="world" default="worlds/empty.world"/> -->
+
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="world_name"      value="$(arg world)"/>
+        <arg name="paused"          value="false"/>
+        <arg name="use_sim_time"    value="true"/>
+        <arg name="gui"             value="true"/>
+        <arg name="headless"        value="false"/>
+        <arg name="debug"           value="false"/>
+        <arg name="verbose"         value="false"/>
+        <arg name="output"          value="screen"/>
+        <arg name="gui_required"    value="true"/>
+    </include>
+
+    <include file="$(find inchworm_project_gazebo)/launch/playground_description.launch">
+        <arg name="namespace"       value="$(arg namespace)"/>
+    </include>
+
+    <!-- <node pkg="gazebo_ros" type="spawn_model" name="spawn_playground" output="screen"
+        args="-urdf -x $(arg playground_x_pos) -y $(arg playground_y_pos) -z $(arg playground_z_pos) -param $(arg namespace)/playground_description -model playground"/> -->
+
+</launch>

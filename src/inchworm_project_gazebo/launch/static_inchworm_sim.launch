@@ -12,18 +12,12 @@
     <arg name="z_pos" default="0.3"/>
     <!-- Change this to another world if desired -->
     <!-- <arg name="world" default="$(find inchworm_project_gazebo)/worlds/playground.world"/> -->
-    <arg name="world" default="worlds/empty.world"/>
+    <!-- <arg name="world" default="worlds/empty.world"/> -->
 
-    <include file="$(find gazebo_ros)/launch/empty_world.launch">
-        <arg name="world_name"      value="$(arg world)"/>
-        <arg name="paused"          value="false"/>
-        <arg name="use_sim_time"    value="true"/>
-        <arg name="gui"             value="true"/>
-        <arg name="headless"        value="false"/>
-        <arg name="debug"           value="false"/>
-        <arg name="verbose"         value="false"/>
-        <arg name="output"          value="screen"/>
-        <arg name="gui_required"    value="true"/>
+    <!-- Start Gazebo World -->
+    <include file="$(find inchworm_project_gazebo)/launch/playground_sim.launch">
+        <!-- Change arguments here if desired -->
+        <arg name="namespace" value="$(arg namespace)"/>
     </include>
 
     <!-- Import Inchworm Description -->
@@ -40,14 +34,12 @@
     <node pkg="gazebo_ros" type="spawn_model" name="spawn_inchworm" output="screen"
         args="-urdf -x $(arg x_pos) -y $(arg y_pos) -z $(arg z_pos) -param $(arg namespace)/robot_description -model inchworm_static"/>
 
-    <include file="$(find inchworm_project_gazebo)/launch/playground_description.launch">
-        <arg name="namespace"       value="$(arg namespace)"/>
-    </include>
-
+    <!-- Spawn Playground in Gazebo -->
+    <!-- TODO: This should be in the playground_sim.launch, but for some reason doesn't work -->
     <node pkg="gazebo_ros" type="spawn_model" name="spawn_playground" output="screen"
         args="-urdf -x $(arg playground_x_pos) -y $(arg playground_y_pos) -z $(arg playground_z_pos) -param $(arg namespace)/playground_description -model playground"/>
 
     <!-- Open RVIZ -->
-    <!-- <node name="rviz" pkg="rviz" type="rviz" args="-d $(find inchworm_description)/rviz/inchworm_viz.rviz"/> -->
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find inchworm_project_gazebo)/rviz/playground_world.rviz"/>
 
 </launch>

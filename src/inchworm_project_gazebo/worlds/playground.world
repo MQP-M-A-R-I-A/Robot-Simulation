@@ -3,24 +3,8 @@
   <world name="default">
 
     <include>
-      <uri>model://ground_plane</uri>
-    </include>
-
-    <include>
       <uri>model://sun</uri>
     </include>
-
-    <model name="playground">
-      <pose>0 0 0  0 0 0</pose>
-      <static>true</static>
-      <link name="body">
-        <visual name="visual">
-          <geometry>
-            <mesh><uri>file://playgroundsquare.dae</uri></mesh>
-          </geometry>
-        </visual>
-      </link>
-    </model>
 
   </world>
 </sdf>

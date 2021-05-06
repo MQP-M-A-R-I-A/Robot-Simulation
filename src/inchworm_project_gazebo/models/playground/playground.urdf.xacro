@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro" name="playground">
+
+    <!-- Note: Only use this URDF when testing the inchworm kinematics. 
+    The inchworm will be fixed to a specific position as determined under 'Static Joint to World Frame' comment -->
+
+    <!-- Import Gazebo ROS Control Plugin -->
+    <gazebo>
+        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+            <robotNamespace>/playground</robotNamespace>
+        </plugin>
+    </gazebo>
+
+    <!-- Static Joint to World Frame in Simulation -->
+    <link name="world"/>
+
+    <joint name="joint_name" type="fixed">
+        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+        <parent link="world"/>
+        <!-- Uncomment below if you want to test general kinematics or end effector -->
+        <child link="playground"/>
+        <!-- Uncomment below if you want to test front foot kinematics -->
+        <!-- <child link="backfoot_ee_link"/>  -->
+        <!-- Uncomment below if you want to test back foot kinematics -->
+        <!-- <child link="frontfoot_link"/>  -->
+    </joint>
+
+    <!-- Links -->
+    <link name="playground">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://inchworm_project_gazebo/models/playground/playground.dae"/>
+            </geometry>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <mesh filename="package://inchworm_project_gazebo/models/playground/playground.dae"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            <mass value="0.1"/>
+            <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+        </inertial>
+    </link>
+
+</robot>

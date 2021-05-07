@@ -26,7 +26,7 @@
         <arg name="namespace"       value="$(arg namespace)"/>
     </include>
 
-    <node pkg="gazebo_ros" type="spawn_model" name="spawn_playground" output="screen"
-        args="-urdf -x $(arg playground_x_pos) -y $(arg playground_y_pos) -z $(arg playground_z_pos) -param $(arg namespace)/playground_description -model playground"/>
+    <!-- <node pkg="gazebo_ros" type="spawn_model" name="spawn_playground" output="screen"
+        args="-urdf -x $(arg playground_x_pos) -y $(arg playground_y_pos) -z $(arg playground_z_pos) -param $(arg namespace)/playground_description -model playground"/> -->
 
 </launch>

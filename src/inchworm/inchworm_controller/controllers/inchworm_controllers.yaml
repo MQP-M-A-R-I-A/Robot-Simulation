@@ -1,4 +1,4 @@
-inchworm_static:
+inchworm:
   main_b_joint_controller:
     type: position_controllers/JointPositionController
     joint: main_b_joint

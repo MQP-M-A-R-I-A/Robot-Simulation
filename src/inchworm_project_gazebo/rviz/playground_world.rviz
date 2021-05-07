@@ -111,7 +111,7 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
       Name: Inchworm Static
-      Robot Description: /inchworm_static/robot_description
+      Robot Description: /inchworm/robot_description
       TF Prefix: ""
       Update Interval: 0
       Value: true
@@ -180,5 +180,5 @@ Window Geometry:
   Views:
     collapsed: false
   Width: 1914
-  X: 949
-  Y: 407
+  X: 943
+  Y: 382

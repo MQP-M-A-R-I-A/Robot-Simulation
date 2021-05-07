@@ -8,7 +8,6 @@ Panels:
         - /Status1
         - /Inchworm Static1
         - /Inchworm Static1/Status1
-        - /Inchworm Static1/Links1
       Splitter Ratio: 0.5
     Tree Height: 873
   - Class: rviz/Selection
@@ -145,7 +144,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 0.9598585963249207
+      Distance: 1.6915987730026245
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -181,5 +180,5 @@ Window Geometry:
   Views:
     collapsed: false
   Width: 1914
-  X: 1013
-  Y: 814
+  X: 949
+  Y: 407

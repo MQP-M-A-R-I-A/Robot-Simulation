@@ -5,16 +5,11 @@
     The inchworm will be fixed to a specific position as determined under 'Static Joint to World Frame' comment -->
 
     <!-- Import Gazebo ROS Control Plugin -->
-    <gazebo>
-        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
-            <robotNamespace>/playground</robotNamespace>
-        </plugin>
-    </gazebo>
 
     <!-- Static Joint to World Frame in Simulation -->
     <link name="world"/>
 
-    <joint name="joint_name" type="fixed">
+    <joint name="world_playground_joint" type="fixed">
         <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
         <parent link="world"/>
         <child link="playground"/>

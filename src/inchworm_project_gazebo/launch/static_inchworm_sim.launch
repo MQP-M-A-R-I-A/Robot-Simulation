@@ -1,23 +1,11 @@
 <?xml version="1.0"?>
 <launch>
-
-    <arg name="namespace" default="/inchworm_static"/>
-
-    <arg name="playground_x_pos" default="0"/>
-    <arg name="playground_y_pos" default="0"/>
-    <arg name="playground_z_pos" default="0"/>
-
+    <arg name="namespace" default="/inchworm"/>
     <arg name="x_pos" default="0"/>
     <arg name="y_pos" default="0"/>
     <arg name="z_pos" default="0.3"/>
-    <!-- Change this to another world if desired -->
-    <!-- <arg name="world" default="$(find inchworm_project_gazebo)/worlds/playground.world"/> -->
-    <!-- <arg name="world" default="worlds/empty.world"/> -->
 
-    <!-- Start Gazebo World -->
     <include file="$(find inchworm_project_gazebo)/launch/playground_sim.launch">
-        <!-- Change arguments here if desired -->
-        <arg name="namespace" value="$(arg namespace)"/>
     </include>
 
     <!-- Import Inchworm Description -->
@@ -31,13 +19,8 @@
     </include>
 
     <!-- Spawn Inchworm in Gazebo -->
-    <node pkg="gazebo_ros" type="spawn_model" name="spawn_inchworm" output="screen"
+    <node pkg="gazebo_ros" type="spawn_model" name="spawn_urdf" output="screen"
         args="-urdf -x $(arg x_pos) -y $(arg y_pos) -z $(arg z_pos) -param $(arg namespace)/robot_description -model inchworm_static"/>
-
-    <!-- Spawn Playground in Gazebo -->
-    <!-- TODO: This should be in the playground_sim.launch, but for some reason doesn't work -->
-    <node pkg="gazebo_ros" type="spawn_model" name="spawn_playground" output="screen"
-        args="-urdf -x $(arg playground_x_pos) -y $(arg playground_y_pos) -z $(arg playground_z_pos) -param $(arg namespace)/playground_description -model playground"/>
 
     <!-- Open RVIZ -->
     <node name="rviz" pkg="rviz" type="rviz" args="-d $(find inchworm_project_gazebo)/rviz/playground_world.rviz"/>

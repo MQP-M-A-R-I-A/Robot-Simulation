@@ -15,15 +15,6 @@
     <xacro:property name="joint_speed" value="545"/>        <!-- in rpm -->
     <xacro:property name="joint_torque" value="0.03525"/>   <!-- in N-m -->
 
-    <!-- Static Joint to World Frame in Simulation -->
-    <link name="world"/>
-
-    <joint name="joint_name" type="fixed">
-        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
-        <parent link="world"/>
-        <child link="inchworm_main"/>
-    </joint>
-
     <!-- Links -->
     <link name="inchworm_main">
         <inertial>

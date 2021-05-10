@@ -69,33 +69,96 @@ class Inchworm:
             self._cmd_joints_ros()
             self.rate.sleep()
 
-    def fwkin(self):
+    def tdh(self,theta, d, a , alpha):
+        """
+            DH Parameters function: takes in theta, d, a, alpha and outputs transformation matrix
+
+            Parameters
+            ----------
+            theta, d, a, alpha
+
+            Returns
+            -------
+            transformation matrix
+        """
+        tdh = [ [cos(theta), -sin(theta)*cosd(alpha), sin(theta)*sin(alpha),  a*cos(theta)],
+                [sin(theta), cos(theta)*cos(alpha),  -cos(theta)*sin(alpha), a*sin(theta)],
+                [0,          sin(alpha),             cos(alpha),             d],
+                [0,          0,                      0,                      1]]
+
+        return tdh
+
+    def fwkin(self, q, movingFoot):
         """
             Forward Kinematics function: takes in angles and outputs position
 
             Parameters
             ----------
-            None
+            q: list of joint variables
+            movingFoot: string indicating which foot is moving
 
             Returns
             -------
             None
         """
-        rospy.WARN("Fwkin function not implemented yet!")
+        L1 = 1
+        L2 = 2
+        L3 = 3
+        L4 = 3
+        L5 = 2
+        L6 = 1
 
-    def ikin(self):
+        # will replace Ls with actual values and also replace everything with 2 precalcualted matrices
+        if (movingFoot == "front")
+            #front EE moving
+            A1 = tdh(0, L1, 0, 0)
+            A2 = tdh(theta1, 0, L2, -90)
+            A3 = tdh(90, 0, 0, 0)
+            A4 = tdh(theta2, 0, -L3, 0)
+            A5 = tdh(theta3, 0, L4, 0)
+            A6 = tdh(theta4-90, 0, -L5, 90)
+            A7 = tdh(theta5, 0, L6, 0)
+        else
+            #back EE moving
+            A1 = tdh(0, L6, 0, 0)
+            A2 = tdh(theta6, 0, L5, -90)
+            A3 = tdh(90, 0, 0, 0)
+            A4 = tdh(theta4, 0, -L4, 0)
+            A5 = tdh(theta3, 0, L3, 0)
+            A6 = tdh(theta2-90, 0, -L2, 90)
+            A7 = tdh(theta1, 0, L1, 0)
+        
+        return A1*A2*A3*A4*A5*A6*A7
+        
+    def ikin(self, p):
         """
             Inverse Kinematics function: takes in desired position and outputs angles
 
             Parameters
             ----------
-            None
+            p: list of EE's position in x y z coordinate frame
 
             Returns
             -------
-            None
+            q:  list of joint values theta1 - theta5
         """
-        rospy.WARN("Ikin function not implemented yet!")
+
+        L1 = 1
+        L2 = 2
+        L3 = 3
+        L4 = 3
+
+        px = p(0)
+        py = p(1)
+        pz = p(2)
+
+        theta1 = -np.arctan2(py,px)
+        theta2 = np.arctan2( ( pz-L1 ), ( np.sqrt( (px)^2 + (py)^2 ) ) ) + np.cos( ( (L2)^2 + (L4)^2 - (L3)^2 ) / (2*L2*L4))        
+        theta3 = -np.cos(-((L3)^2+(L2)^2-(L4)^2)/(2*L2*L3))
+        #theta 4 is orientation
+        #assuming that theta 5 does not move
+        theta = [theta1, theta2, theta3]
+        return theta
     
     def cmd_joints(self, main_joint = None, frontleg_joint = None, backleg_joint = None, frontfoot_joint = None, backfoot_joint = None):
         """

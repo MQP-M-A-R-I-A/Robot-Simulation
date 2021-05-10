@@ -6,6 +6,7 @@
     <arg name="z_pos" default="0.3"/>
 
     <include file="$(find inchworm_project_gazebo)/launch/playground_sim.launch">
+        <arg name="paused" value="true"/>
     </include>
 
     <!-- Import Inchworm Description -->
@@ -20,9 +21,11 @@
 
     <!-- Spawn Inchworm in Gazebo -->
     <node pkg="gazebo_ros" type="spawn_model" name="spawn_urdf" output="screen"
-        args="-urdf -x $(arg x_pos) -y $(arg y_pos) -z $(arg z_pos) -param $(arg namespace)/robot_description -model inchworm_static"/>
+        args="-urdf -x $(arg x_pos) -y $(arg y_pos) -z $(arg z_pos) -param $(arg namespace)/robot_description -model inchworm"/>
 
     <!-- Open RVIZ -->
     <node name="rviz" pkg="rviz" type="rviz" args="-d $(find inchworm_project_gazebo)/rviz/playground_world.rviz"/>
+
+    <node name="set_starting_config" pkg="inchworm_controller" type="set_zero_pos.py"/>
 
 </launch>

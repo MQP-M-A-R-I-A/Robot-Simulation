@@ -1,23 +1,11 @@
 <?xml version="1.0"?>
 <launch>
-
-    <arg name="namespace" default="/inchworm_static"/>
+    <arg name="namespace" default="/inchworm"/>
     <arg name="x_pos" default="0"/>
     <arg name="y_pos" default="0"/>
     <arg name="z_pos" default="0.3"/>
-    <!-- Change this to another world if desired -->
-    <arg name="world" default="worlds/empty.world"/>
 
-    <include file="$(find gazebo_ros)/launch/empty_world.launch">
-        <arg name="world_name"      value="$(arg world)"/>
-        <arg name="paused"          value="false"/>
-        <arg name="use_sim_time"    value="true"/>
-        <arg name="gui"             value="true"/>
-        <arg name="headless"        value="false"/>
-        <arg name="debug"           value="false"/>
-        <arg name="verbose"         value="false"/>
-        <arg name="output"          value="screen"/>
-        <arg name="gui_required"    value="true"/>
+    <include file="$(find inchworm_project_gazebo)/launch/playground_sim.launch">
     </include>
 
     <!-- Import Inchworm Description -->
@@ -35,6 +23,6 @@
         args="-urdf -x $(arg x_pos) -y $(arg y_pos) -z $(arg z_pos) -param $(arg namespace)/robot_description -model inchworm_static"/>
 
     <!-- Open RVIZ -->
-    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find inchworm_description)/rviz/inchworm_viz.rviz"/>
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find inchworm_project_gazebo)/rviz/playground_world.rviz"/>
 
 </launch>

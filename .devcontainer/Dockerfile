@@ -46,7 +46,7 @@ RUN apt update && apt install --no-install-recommends -y \
     ros-melodic-joint-state-publisher \
     ros-melodic-joint-state-publisher-gui \
     python-pip \
-    openssh-client
+    openssh-client \
     nano
 
 RUN rm -rf /var/lib/apt/lists/*

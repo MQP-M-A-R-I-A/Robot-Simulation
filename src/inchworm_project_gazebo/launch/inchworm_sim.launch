@@ -26,4 +26,6 @@
     <!-- Open RVIZ -->
     <node name="rviz" pkg="rviz" type="rviz" args="-d $(find inchworm_project_gazebo)/rviz/playground_world.rviz"/>
 
+    <node name="set-starting-config" pkg="inchworm_controller" type="set_zero_pos.py"/>
+
 </launch>

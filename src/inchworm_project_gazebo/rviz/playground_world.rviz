@@ -106,10 +106,6 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        world:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
       Name: Inchworm Static
       Robot Description: /inchworm/robot_description
       TF Prefix: ""
@@ -120,7 +116,7 @@ Visualization Manager:
   Global Options:
     Background Color: 48; 48; 48
     Default Light: true
-    Fixed Frame: world
+    Fixed Frame: inchworm_main
     Frame Rate: 30
   Name: root
   Tools:
@@ -144,7 +140,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 1.6915987730026245
+      Distance: 0.608357310295105
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -159,10 +155,10 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.515399158000946
+      Pitch: 0.45539912581443787
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 2.3440823554992676
+      Yaw: 2.679094076156616
     Saved: ~
 Window Geometry:
   Displays:
@@ -180,5 +176,5 @@ Window Geometry:
   Views:
     collapsed: false
   Width: 1914
-  X: 943
-  Y: 382
+  X: 937
+  Y: 357

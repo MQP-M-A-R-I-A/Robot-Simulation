@@ -94,41 +94,47 @@ class Inchworm:
 
             Parameters
             ----------
-            q: list of joint variables
+            q: list of joint variables where q[1] correlates to the front end effector
             movingFoot: string indicating which foot is moving
 
             Returns
             -------
             None
         """
-        L1 = 1
-        L2 = 2
-        L3 = 3
-        L4 = 3
-        L5 = 2
-        L6 = 1
+        #since the robot is symetrical I only used 2 variables
+        L1 = 1 #foot to bottom joint height
+        L2 = 2 #botom to top joint heigh - the reall height
 
         # will replace Ls with actual values and also replace everything with 2 precalcualted matrices
         if (movingFoot == "front")
             #front EE moving
-            A1 = tdh(0, L1, 0, 0)
-            A2 = tdh(theta1, 0, L2, -90)
-            A3 = tdh(90, 0, 0, 0)
-            A4 = tdh(theta2, 0, -L3, 0)
-            A5 = tdh(theta3, 0, L4, 0)
-            A6 = tdh(theta4-90, 0, -L5, 90)
-            A7 = tdh(theta5, 0, L6, 0)
+            A1 = tdh(q[1], L1, 0, -90)
+            A2 = tdh(q[2]+90, 0, -L2, 0)
+            A3 = tdh(q[3]-90, 0, 0, 90)
+
+            A4 = tdh(0, 0, 0, -90)
+            A5 = tdh(90, 0, 0, 0)   #INT1
+            A6 = tdh(q[4], 0, L2, 0)
+            A7 = tdh(-90, 0, 0, 0)  #INT2
+            A8 = tdh(q[5], 0, L1, 0)
+            A9 = tdh(-90, 0, 0, 90)  #INT3
+            #not including q[6] bc that goes with orientation - since it's a circle, rn it shouldn't matter?
+
         else
             #back EE moving
-            A1 = tdh(0, L6, 0, 0)
-            A2 = tdh(theta6, 0, L5, -90)
-            A3 = tdh(90, 0, 0, 0)
-            A4 = tdh(theta4, 0, -L4, 0)
-            A5 = tdh(theta3, 0, L3, 0)
-            A6 = tdh(theta2-90, 0, -L2, 90)
-            A7 = tdh(theta1, 0, L1, 0)
+            A1 = tdh(q[6], L1, 0, -90)
+            A2 = tdh(q[5]+90, 0, -L2, 0)
+            A3 = tdh(q[4]-90, 0, 0, 90)
+
+            A4 = tdh(0, 0, 0, -90)
+            A5 = tdh(90, 0, 0, 0)   #INT1
+            A6 = tdh(q[3], 0, L2, 0)
+            A7 = tdh(-90, 0, 0, 0)  #INT2
+            A8 = tdh(q[2], 0, L1, 0)
+            A9 = tdh(-90, 0, 0, 90)  #INT3
+            #same reasoning as above for excluding q[1[
         
-        return A1*A2*A3*A4*A5*A6*A7
+        return A1*A2*A3*A4*A5*A6*A7*A8*A9
         
     def ikin(self, p):
         """

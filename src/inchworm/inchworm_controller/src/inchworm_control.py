@@ -116,8 +116,8 @@ class Inchworm:
             A5 = tdh(90, 0, 0, 0)   #INT1
             A6 = tdh(q[4], 0, L2, 0)
             A7 = tdh(-90, 0, 0, 0)  #INT2
-            A8 = tdh(q[5], 0, L1, 0)
-            A9 = tdh(-90, 0, 0, 90)  #INT3
+            A8 = tdh(q[5], 0, 0, 90)
+            A9 = tdh(0, -L1, 0, 0)  #INT3
             #not including q[6] bc that goes with orientation - since it's a circle, rn it shouldn't matter?
 
         else
@@ -130,8 +130,8 @@ class Inchworm:
             A5 = tdh(90, 0, 0, 0)   #INT1
             A6 = tdh(q[3], 0, L2, 0)
             A7 = tdh(-90, 0, 0, 0)  #INT2
-            A8 = tdh(q[2], 0, L1, 0)
-            A9 = tdh(-90, 0, 0, 90)  #INT3
+            A8 = tdh(q[2], 0, 0, 90)
+            A9 = tdh(0, -L1, 0, 0)  #INT3
             #same reasoning as above for excluding q[1[
         
         return A1*A2*A3*A4*A5*A6*A7*A8*A9

@@ -8,7 +8,7 @@ import math
 # ROS Imports
 import rospy
 from std_msgs.msg import Float64
-from inchworm_project_msgs.msg import JointCmd
+from inchworm_project_msgs.msg import JointCmd, EndEffectorCmd
 
 class Inchworm:
     """
@@ -53,6 +53,8 @@ class Inchworm:
         self._backleg_backfoot_joint_cmd = Float64()
 
         rospy.Subscriber('joint_cmd', JointCmd, self._cmd_joints_callback)
+
+        rospy.Subscriber('cmd_endeffector', EndEffectorCmd, self._cmd_ee_callback)
         
         # Set to starting configuration
         # self.cmd_joints(main_joint=1.04620, frontleg_joint=0.52360, backleg_joint=-0.52360, frontfoot_joint=0, backfoot_joint=0)
@@ -77,6 +79,8 @@ class Inchworm:
         """
             FW kin from back foot end effector to front end effector
 
+            Note: Not tested!
+
             Parameters
             ----------
             q1, q2, q3, q4, q5: joint variables in rad
@@ -98,6 +102,8 @@ class Inchworm:
     def ikin(self, p):
         """
             Inverse Kinematics function: takes in desired position and outputs angles
+
+            Note: NOT correct!
 
             Parameters
             ----------
@@ -125,12 +131,13 @@ class Inchworm:
         theta = [theta1, theta2, theta3]
         return theta
     
-    def cmd_joints(self, main_joint = None, frontleg_joint = None, backleg_joint = None, frontfoot_joint = None, backfoot_joint = None):
+    def cmd_joints(self, main_front_joint = None, main_back_joint = None, frontleg_joint = None, backleg_joint = None, frontfoot_joint = None, backfoot_joint = None):
         """
         """
-        if main_joint is not None:
-            self.main_b_pub.publish(Float64(-float(main_joint)/2))
-            self.main_c_pub.publish(Float64(float(main_joint)/2)) 
+        if main_front_joint is not None:
+            self.main_b_pub.publish(Float64(-float(main_front_joint)/2))
+        if main_back_joint is not None:
+            self.main_c_pub.publish(Float64(float(main_back_joint))) 
         if frontleg_joint is not None:
             self.b_frontleg_pub.publish(Float64(float(frontleg_joint)))
         if backleg_joint is not None:
@@ -141,30 +148,13 @@ class Inchworm:
             self.backleg_backfoot_pub.publish(Float64(float(backfoot_joint)))
     
     def _cmd_joints_callback(self, msg):
-        self.cmd_joints(main_joint = msg.main, frontleg_joint = msg.frontleg, backleg_joint = msg.backleg,
-                        frontfoot_joint = msg.frontfoot, backfoot_joint = msg.backfoot)
-
-    # def _cmd_joints_ros(self):
-    #     """
-    #         Sends commands to joints, runs in the main loop
-    #         Note: Do not call this function to control joints! This is only intended to publish things.
-    #                 Use cmd_joints() function instead
-            
-    #         Parameters
-    #         ----------
-    #         None
-
-    #         Returns
-    #         -------
-    #         None
-    #     """
-    #     self.main_b_pub.publish(self._main_b_joint_cmd)
-    #     self.b_frontleg_pub.publish(self._b_frontleg_joint_cmd)
-    #     self.frontleg_frontfoot_pub.publish(self._frontleg_frontfoot_joint_cmd)
-    #     self.main_c_pub.publish(self._main_c_joint_cmd)
-    #     self.c_backleg_pub.publish(self._c_backleg_joint_cmd)
-    #     self.backleg_backfoot_pub.publish(self._backleg_backfoot_joint_cmd)
+        self.cmd_joints(main_front_joint = msg.main_front, main_back_joint=msg.main_back, frontleg_joint = msg.frontleg, 
+                        backleg_joint = msg.backleg, frontfoot_joint = msg.frontfoot, backfoot_joint = msg.backfoot)
     
+    def _cmd_ee_callback(self, msg):
+        pass
+
+
     def tdh(self,theta, d, a , alpha):
         """
             DH Parameters function: takes in theta, d, a, alpha and outputs transformation matrix

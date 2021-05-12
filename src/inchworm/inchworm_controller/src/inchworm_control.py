@@ -4,6 +4,7 @@
 ##### Imports #####
 ###################
 import numpy as np
+import math
 # ROS Imports
 import rospy
 from std_msgs.msg import Float64
@@ -51,7 +52,7 @@ class Inchworm:
         self._backleg_backfoot_joint_cmd = Float64()
         
         # Set to starting configuration
-        self.cmd_joints(main_joint=1.04620, frontleg_joint=0.52360, backleg_joint=-0.52360, frontfoot_joint=0, backfoot_joint=0)
+        # self.cmd_joints(main_joint=1.04620, frontleg_joint=0.52360, backleg_joint=-0.52360, frontfoot_joint=0, backfoot_joint=0)
 
     def run_controller(self):
         """
@@ -81,54 +82,35 @@ class Inchworm:
             -------
             transformation matrix
         """
-        tdh = [ [cos(theta), -sin(theta)*cosd(alpha), sin(theta)*sin(alpha),  a*cos(theta)],
+        tdh = np.array([
+                [cos(theta), -sin(theta)*cosd(alpha), sin(theta)*sin(alpha),  a*cos(theta)],
                 [sin(theta), cos(theta)*cos(alpha),  -cos(theta)*sin(alpha), a*sin(theta)],
                 [0,          sin(alpha),             cos(alpha),             d],
-                [0,          0,                      0,                      1]]
+                [0,          0,                      0,                      1]])
 
         return tdh
 
-    def fwkin(self, q, movingFoot):
+    def fwkin(self, q_back_foot_leg, q_leg_c, q_c_b, q_leg_b, q_front_foot_leg):
         """
-            Forward Kinematics function: takes in angles and outputs position
+            FW kin from back foot end effector to front end effector
 
             Parameters
             ----------
-            q: list of joint variables
-            movingFoot: string indicating which foot is moving
+            q1, q2, q3, q4, q5: joint variables in rad
 
             Returns
             -------
-            None
+            tf matrix
         """
-        L1 = 1
-        L2 = 2
-        L3 = 3
-        L4 = 3
-        L5 = 2
-        L6 = 1
+        t_dict = dict()
 
-        # will replace Ls with actual values and also replace everything with 2 precalcualted matrices
-        if (movingFoot == "front")
-            #front EE moving
-            A1 = tdh(0, L1, 0, 0)
-            A2 = tdh(theta1, 0, L2, -90)
-            A3 = tdh(90, 0, 0, 0)
-            A4 = tdh(theta2, 0, -L3, 0)
-            A5 = tdh(theta3, 0, L4, 0)
-            A6 = tdh(theta4-90, 0, -L5, 90)
-            A7 = tdh(theta5, 0, L6, 0)
-        else
-            #back EE moving
-            A1 = tdh(0, L6, 0, 0)
-            A2 = tdh(theta6, 0, L5, -90)
-            A3 = tdh(90, 0, 0, 0)
-            A4 = tdh(theta4, 0, -L4, 0)
-            A5 = tdh(theta3, 0, L3, 0)
-            A6 = tdh(theta2-90, 0, -L2, 90)
-            A7 = tdh(theta1, 0, L1, 0)
-        
-        return A1*A2*A3*A4*A5*A6*A7
+        t_dict['back_ee_foot'] = self._tz(0.0489)
+        t_dict['back_foot_leg'] = self._tz(0.0573) * self._rz(q_back_foot_leg) * self._rx(np.deg2rad(-90)) * self._rz(np.deg2rad(90))
+        t_dict['back_leg_c'] = self._rz(q_leg_c) * self._tx(-0.1663)
+        t_dict['c_b'] = self._rz(q_c_b) * self._tx(0.1663)
+        t_dict['b_front_leg'] = self._rz(q_leg_b) * self._tx(0.0573) * self._rz(np.deg2rad(-90)) * self._rx(np.deg2rad(90))
+        t_dict['front_leg_foot'] = self._rz(q_front_foot_leg)
+        t_dict['front_foot_ee'] = self._tz(-0.0489)
         
     def ikin(self, p):
         """
@@ -195,6 +177,89 @@ class Inchworm:
         self.main_c_pub.publish(self._main_c_joint_cmd)
         self.c_backleg_pub.publish(self._c_backleg_joint_cmd)
         self.backleg_backfoot_pub.publish(self._backleg_backfoot_joint_cmd)
+
+    def _tx(self, x):
+        """
+            Creates transformation matrix with X transformation
+            Parameters
+            ----------
+            x: linear transformation in x direction in meters
+        """
+        return np.array([
+            [1, 0, 0, x],
+            [0, 1, 0, 0],
+            [0, 0, 1, 0],
+            [0, 0, 0, 1]
+        ])
+    def _ty(self, y):
+        """
+            Creates transformation matrix with Y transformation
+            Parameters
+            ----------
+            y: linear transformation in y direction in meters
+        """
+        return np.array([
+            [1, 0, 0, 0],
+            [0, 1, 0, y],
+            [0, 0, 1, 0],
+            [0, 0, 0, 1]
+        ])
+    def _tz(self, z):
+        """
+            Creates transformation matrix with Z transformation
+            Parameters
+            ----------
+            z: linear transformation in z direction in meters
+        """
+        return np.array([
+            [1, 0, 0, 0],
+            [0, 1, 0, 0],
+            [0, 0, 1, z],
+            [0, 0, 0, 1]
+        ])
+    def _rx(self, rx):
+        """
+            Creates transformation matrix with RX rotation
+
+            Parameters
+            ----------
+            rx: angular transformation around x axis in rad
+        """
+        return np.array([
+            [1,            0,             0, 0],
+            [0, math.cos(rx), -math.sin(rx), 0],
+            [0, math.sin(rx),  math.cos(rx), 0],
+            [0,            0,             0, 1]
+        ])
+    def _ry(self, ry):
+        """
+            Creates transformation matrix with RY rotation
+
+            Parameters
+            ----------
+            ry: angular transformation around y axis in rad
+        """
+        return np.array([
+            [ math.cos(ry), 0, math.sin(ry), 0],
+            [            0, 1,            0, 0],
+            [-math.sin(ry), 0, math.cos(ry), 0],
+            [            0, 0,            0, 1]
+        ])
+    def _rz(self, rz):
+        """
+            Creates transformation matrix with RZ rotation
+
+            Parameters
+            ----------
+            rz: angular transformation around z axis in rad
+        """
+        return np.array([
+            [math.cos(rz), -math.sin(rz), 0, 0],
+            [math.sin(rz),  math.cos(rz), 0, 0],
+            [           0,             0, 1, 0],
+            [           0,             0, 0, 1]
+        ])
+    
 
 if __name__ == '__main__':
     try:

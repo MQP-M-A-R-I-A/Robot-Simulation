@@ -7,8 +7,12 @@ Panels:
         - /Global Options1
         - /Status1
         - /Inchworm Static1
-        - /Inchworm Static1/Status1
+        - /Inchworm Static1/Links1
         - /Inchworm Static1/Links1/b_link1
+        - /Inchworm Static1/Links1/backfoot_ee_link1
+        - /Inchworm Static1/Links1/frontfoot_link1
+        - /Inchworm Static1/Links1/frontleg_link1
+        - /Inchworm Static1/Links1/inchworm_main1
       Splitter Ratio: 0.5
     Tree Height: 873
   - Class: rviz/Selection
@@ -60,8 +64,7 @@ Visualization Manager:
       Collision Enabled: false
       Enabled: true
       Links:
-        All Links Enabled:
-          {}
+        All Links Enabled: true
         Expand Joint Details: false
         Expand Link Details: false
         Expand Tree: false
@@ -70,6 +73,7 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
+          Value: true
         backfoot_ee_link:
           Alpha: 1
           Show Axes: false
@@ -78,26 +82,31 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
+          Value: true
         backleg_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
+          Value: true
         c_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
+          Value: true
         frontfoot_ee_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
         frontfoot_link:
           Alpha: 1
-          Show Axes: false
+          Show Axes: true
           Show Trail: false
+          Value: true
         frontleg_link:
           Alpha: 1
-          Show Axes: false
+          Show Axes: true
           Show Trail: false
+          Value: true
         inchworm_main:
           Alpha: 1
           Show Axes: false
@@ -112,7 +121,7 @@ Visualization Manager:
   Global Options:
     Background Color: 48; 48; 48
     Default Light: true
-    Fixed Frame: inchworm_main
+    Fixed Frame: backfoot_ee_link
     Frame Rate: 30
   Name: root
   Tools:
@@ -136,25 +145,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 1.696187138557434
+      Distance: 0.5139488577842712
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: -0.006970223970711231
-        Y: -0.06055566668510437
-        Z: -0.08711466193199158
+        X: 0.004445225931704044
+        Y: -0.03504372388124466
+        Z: -0.16210626065731049
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.3553992509841919
+      Pitch: 0.2003992795944214
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 1.0590789318084717
+      Yaw: 1.1990793943405151
     Saved: ~
 Window Geometry:
   Displays:
@@ -172,5 +181,5 @@ Window Geometry:
   Views:
     collapsed: false
   Width: 1914
-  X: 388
-  Y: 688
+  X: 3901
+  Y: 539

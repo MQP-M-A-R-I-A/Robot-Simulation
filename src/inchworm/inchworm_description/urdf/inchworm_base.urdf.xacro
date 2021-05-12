@@ -63,16 +63,9 @@
             </collision>
         </link>
 
-        <!-- <link name="frontfoot_ee_link">
-            <gazebo>
-                <gravity>true</gravity>
-            </gazebo>
-            <inertial>
-                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
-                <mass value="10"/>
-                <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
-            </inertial>
-        </link> -->
+        <link name="frontfoot_ee_link">
+            
+        </link>
 
         <link name="c_link">
             <visual>
@@ -122,16 +115,9 @@
             </collision>
         </link>
 
-        <!-- <link name="backfoot_ee_link">
-            <gazebo>
-                <gravity>false</gravity>
-            </gazebo>
-            <inertial>
-                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
-                <mass value="10.0"/>
-                <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
-            </inertial>
-        </link> -->
+        <link name="backfoot_ee_link">
+            
+        </link>
 
         <!-- Joint Transmission Macro -->
         <xacro:macro name="joint_transmission" params="prefix">
@@ -176,13 +162,11 @@
         </joint>
         <xacro:joint_transmission prefix="frontleg_frontfoot"/>
 
-        <!-- <joint name="frontfoot_ee_joint" type="fixed">
+        <joint name="frontfoot_ee_joint" type="fixed">
             <origin xyz="0.0 0.0 -0.0489" rpy="0.0 0.0 0.0"/>
             <parent link="frontfoot_link"/>
             <child link="frontfoot_ee_link"/>
-            <limit  effort="${joint_torque}"
-                    velocity="${joint_speed * 2 * 3.14159 / 60 }"/>
-        </joint> -->
+        </joint>
 
         <joint name="main_c_joint" type="continuous">
             <origin xyz="0.0 0.0 0.0" rpy="-1.5707 1.5707 0"/>
@@ -214,13 +198,11 @@
         </joint>
         <xacro:joint_transmission prefix="backleg_backfoot"/>
 
-        <!-- <joint name="backfoot_ee_joint" type="fixed">
+        <joint name="backfoot_ee_joint" type="fixed">
             <origin xyz="0.0 0.0 -0.0489" rpy="0.0 0.0 0.0"/>
             <parent link="backfoot_link"/>
             <child link="backfoot_ee_link"/>
-            <limit  effort="${joint_torque}"
-                    velocity="${joint_speed * 2 * 3.14159 / 60 }"/>
-        </joint> -->
+        </joint>
     </xacro:macro>
 
 </robot>

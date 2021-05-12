@@ -6,7 +6,7 @@
     <arg name="z_pos" default="0.3"/>
 
     <include file="$(find inchworm_project_gazebo)/launch/playground_sim.launch">
-        <arg name="paused" value="true"/>
+        <!-- <arg name="paused" value="true"/> -->
     </include>
 
     <!-- Import Inchworm Description -->
@@ -26,6 +26,6 @@
     <!-- Open RVIZ -->
     <node name="rviz" pkg="rviz" type="rviz" args="-d $(find inchworm_project_gazebo)/rviz/playground_world.rviz"/>
 
-    <node name="set_starting_config" pkg="inchworm_controller" type="set_zero_pos.py"/>
+    <!-- <node name="set_starting_config" pkg="inchworm_controller" type="set_zero_pos.py"/> -->
 
 </launch>

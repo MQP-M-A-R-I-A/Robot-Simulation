@@ -51,6 +51,8 @@ class Inchworm:
         self._main_c_joint_cmd = Float64()
         self._c_backleg_joint_cmd = Float64()
         self._backleg_backfoot_joint_cmd = Float64()
+
+        rospy.Subscriber('joint_cmd', JointCmd, self._cmd_joints_callback)
         
         # Set to starting configuration
         # self.cmd_joints(main_joint=1.04620, frontleg_joint=0.52360, backleg_joint=-0.52360, frontfoot_joint=0, backfoot_joint=0)
@@ -68,28 +70,8 @@ class Inchworm:
             None
         """
         while not rospy.is_shutdown():
-            self._cmd_joints_ros()
+            # self._cmd_joints_ros()
             self.rate.sleep()
-
-    def tdh(self,theta, d, a , alpha):
-        """
-            DH Parameters function: takes in theta, d, a, alpha and outputs transformation matrix
-
-            Parameters
-            ----------
-            theta, d, a, alpha
-
-            Returns
-            -------
-            transformation matrix
-        """
-        tdh = np.array([
-                [cos(theta), -sin(theta)*cosd(alpha), sin(theta)*sin(alpha),  a*cos(theta)],
-                [sin(theta), cos(theta)*cos(alpha),  -cos(theta)*sin(alpha), a*sin(theta)],
-                [0,          sin(alpha),             cos(alpha),             d],
-                [0,          0,                      0,                      1]])
-
-        return tdh
 
     def fwkin(self, q_back_foot_leg, q_leg_c, q_c_b, q_leg_b, q_front_foot_leg):
         """
@@ -147,37 +129,61 @@ class Inchworm:
         """
         """
         if main_joint is not None:
-            self._main_b_joint_cmd.data = -float(main_joint)/2
-            self._main_c_joint_cmd.data = float(main_joint)/2
+            self.main_b_pub.publish(Float64(-float(main_joint)/2))
+            self.main_c_pub.publish(Float64(float(main_joint)/2)) 
         if frontleg_joint is not None:
-            self._b_frontleg_joint_cmd.data = float(frontleg_joint)
+            self.b_frontleg_pub.publish(Float64(float(frontleg_joint)))
         if backleg_joint is not None:
-            self._c_backleg_joint_cmd.data = float(backleg_joint)
+            self.c_backleg_pub.publish(Float64(float(backleg_joint)))
         if frontfoot_joint is not None:
-            self._frontleg_frontfoot_joint_cmd.data = float(frontfoot_joint)
+            self.frontleg_frontfoot_pub.publish(Float64(float(frontfoot_joint)))
         if backfoot_joint is not None:
-            self._backleg_backfoot_joint_cmd.data = float(backfoot_joint)
+            self.backleg_backfoot_pub.publish(Float64(float(backfoot_joint)))
+    
+    def _cmd_joints_callback(self, msg):
+        self.cmd_joints(main_joint = msg.main, frontleg_joint = msg.frontleg, backleg_joint = msg.backleg,
+                        frontfoot_joint = msg.frontfoot, backfoot_joint = msg.backfoot)
 
-    def _cmd_joints_ros(self):
-        """
-            Sends commands to joints, runs in the main loop
-            Note: Do not call this function to control joints! This is only intended to publish things.
-                    Use cmd_joints() function instead
+    # def _cmd_joints_ros(self):
+    #     """
+    #         Sends commands to joints, runs in the main loop
+    #         Note: Do not call this function to control joints! This is only intended to publish things.
+    #                 Use cmd_joints() function instead
             
+    #         Parameters
+    #         ----------
+    #         None
+
+    #         Returns
+    #         -------
+    #         None
+    #     """
+    #     self.main_b_pub.publish(self._main_b_joint_cmd)
+    #     self.b_frontleg_pub.publish(self._b_frontleg_joint_cmd)
+    #     self.frontleg_frontfoot_pub.publish(self._frontleg_frontfoot_joint_cmd)
+    #     self.main_c_pub.publish(self._main_c_joint_cmd)
+    #     self.c_backleg_pub.publish(self._c_backleg_joint_cmd)
+    #     self.backleg_backfoot_pub.publish(self._backleg_backfoot_joint_cmd)
+    
+    def tdh(self,theta, d, a , alpha):
+        """
+            DH Parameters function: takes in theta, d, a, alpha and outputs transformation matrix
+
             Parameters
             ----------
-            None
+            theta, d, a, alpha
 
             Returns
             -------
-            None
+            transformation matrix
         """
-        self.main_b_pub.publish(self._main_b_joint_cmd)
-        self.b_frontleg_pub.publish(self._b_frontleg_joint_cmd)
-        self.frontleg_frontfoot_pub.publish(self._frontleg_frontfoot_joint_cmd)
-        self.main_c_pub.publish(self._main_c_joint_cmd)
-        self.c_backleg_pub.publish(self._c_backleg_joint_cmd)
-        self.backleg_backfoot_pub.publish(self._backleg_backfoot_joint_cmd)
+        tdh = np.array([
+                [cos(theta), -sin(theta)*cosd(alpha), sin(theta)*sin(alpha),  a*cos(theta)],
+                [sin(theta), cos(theta)*cos(alpha),  -cos(theta)*sin(alpha), a*sin(theta)],
+                [0,          sin(alpha),             cos(alpha),             d],
+                [0,          0,                      0,                      1]])
+
+        return tdh
 
     def _tx(self, x):
         """

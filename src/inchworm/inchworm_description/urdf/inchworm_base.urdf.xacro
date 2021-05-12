@@ -63,10 +63,6 @@
             </collision>
         </link>
 
-        <link name="frontfoot_ee_link">
-            
-        </link>
-
         <link name="c_link">
             <visual>
                 <origin xyz="0 0 0" rpy="0 0 0"/>
@@ -115,9 +111,13 @@
             </collision>
         </link>
 
-        <link name="backfoot_ee_link">
+        <!-- <link name="frontfoot_ee_link">
             
-        </link>
+        </link> -->
+
+        <!-- <link name="backfoot_ee_link">
+            
+        </link> -->
 
         <!-- Joint Transmission Macro -->
         <xacro:macro name="joint_transmission" params="prefix">
@@ -162,12 +162,6 @@
         </joint>
         <xacro:joint_transmission prefix="frontleg_frontfoot"/>
 
-        <joint name="frontfoot_ee_joint" type="fixed">
-            <origin xyz="0.0 0.0 -0.0489" rpy="0.0 0.0 0.0"/>
-            <parent link="frontfoot_link"/>
-            <child link="frontfoot_ee_link"/>
-        </joint>
-
         <joint name="main_c_joint" type="continuous">
             <origin xyz="0.0 0.0 0.0" rpy="-1.5707 1.5707 0"/>
             <parent link="inchworm_main"/>
@@ -198,11 +192,17 @@
         </joint>
         <xacro:joint_transmission prefix="backleg_backfoot"/>
 
-        <joint name="backfoot_ee_joint" type="fixed">
+        <!-- <joint name="frontfoot_ee_joint" type="fixed">
+            <origin xyz="0.0 0.0 -0.0489" rpy="0.0 0.0 0.0"/>
+            <parent link="frontfoot_link"/>
+            <child link="frontfoot_ee_link"/>
+        </joint> -->
+
+        <!-- <joint name="backfoot_ee_joint" type="fixed">
             <origin xyz="0.0 0.0 -0.0489" rpy="0.0 0.0 0.0"/>
             <parent link="backfoot_link"/>
             <child link="backfoot_ee_link"/>
-        </joint>
+        </joint> -->
     </xacro:macro>
 
 </robot>

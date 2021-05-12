@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <launch> 
 
-    <arg name="namespace" default="/inchworm_static"/>
+    <arg name="namespace" default="/inchworm"/>
 
     <node name="main_controller" pkg="inchworm_controller" type="inchworm_control.py" ns="$(arg namespace)"/>
 

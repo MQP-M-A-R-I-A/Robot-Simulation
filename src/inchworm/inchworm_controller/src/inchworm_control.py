@@ -8,6 +8,7 @@ import math
 # ROS Imports
 import rospy
 from std_msgs.msg import Float64
+from inchworm_project_msgs.msg import JointCmd
 
 class Inchworm:
     """

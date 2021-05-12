@@ -1,18 +1,11 @@
 <?xml version="1.0"?>
 <launch>
 
-  <arg name="namespace" default=""/>
-
-  <include file="$(find inchworm_description)/launch/inchworm_description.launch">
-    <arg name="namespace" value="$(arg namespace)"/>
-  </include>
+  <include file="$(find inchworm_description)/launch/inchworm_description.launch"/>
 
   <node name="joint_state_publisher" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" />
 
-  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" >
-    <param name="publish_frequency" type="double" value="50.0"/>
-    <param name="tf_prefix" type="string" value="" />
-  </node>
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
 
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find inchworm_description)/rviz/inchworm_viz_nosim.rviz" required="true" />
 </launch>

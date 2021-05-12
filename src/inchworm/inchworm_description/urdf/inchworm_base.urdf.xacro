@@ -1,0 +1,226 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro">
+
+    <xacro:macro name="inchworm_base">
+        <!-- Joint Properties -->
+        <xacro:property name="joint_speed" value="545"/>        <!-- in rpm -->
+        <xacro:property name="joint_torque" value="0.03525"/>   <!-- in N-m -->
+
+        <!-- Links -->
+        <link name="inchworm_main">
+            <inertial>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <mass value="0.001"/>
+                <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+            </inertial>
+        </link>
+
+        <link name="b_link">
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://inchworm_description/meshes/inchworm_blink.dae"/>
+                </geometry>
+            </visual>
+            <inertial>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <mass value="0.0997"/>
+                <inertia ixx="182.79" ixy="0.0" ixz="-35.15" iyy="2572.23" iyz="0.0" izz="2446.68"/>
+            </inertial>
+        </link>
+        
+        <link name="frontleg_link">
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 3.1416"/>
+                <geometry>
+                    <mesh filename="package://inchworm_description/meshes/inchworm_leg.dae"/>
+                </geometry>
+            </visual>
+            <inertial>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <mass value="0.0181"/>
+                <inertia ixx="056.24" ixy="0.0" ixz="-21.09" iyy="84.36" iyz="0.0" izz="14.06"/>
+            </inertial>
+        </link>
+
+        <link name="frontfoot_link">
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://inchworm_description/meshes/inchworm_foot.dae"/>
+                </geometry>
+            </visual>
+            <inertial>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <mass value="0.09525"/>
+                <inertia ixx="358.56" ixy="0.0" ixz="0.0" iyy="337.47" iyz="0.0" izz="98.47"/>
+            </inertial>
+            <collision>
+                <origin xyz="0.0 0.0 -0.044" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <cylinder radius="0.0345" length="0.01"/>
+                </geometry>
+            </collision>
+        </link>
+
+        <!-- <link name="frontfoot_ee_link">
+            <gazebo>
+                <gravity>true</gravity>
+            </gazebo>
+            <inertial>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <mass value="10"/>
+                <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+            </inertial>
+        </link> -->
+
+        <link name="c_link">
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://inchworm_description/meshes/inchworm_clink.dae"/>
+                </geometry>
+            </visual>
+            <inertial>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <mass value="0.1995"/>
+                <inertia ixx="379.65" ixy="-21.95" ixz="435.90" iyy="5673.77" iyz="-28.12" izz="1195.21"/>
+            </inertial>
+        </link>
+
+        <link name="backleg_link">
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 3.1416"/>
+                <geometry>
+                    <mesh filename="package://inchworm_description/meshes/inchworm_leg.dae"/>
+                </geometry>
+            </visual>
+            <inertial>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <mass value="0.09525"/>
+                <inertia ixx="358.56" ixy="0.0" ixz="0.0" iyy="337.47" iyz="0.0" izz="98.47"/>
+            </inertial>
+        </link>
+
+        <link name="backfoot_link">
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <mesh filename="package://inchworm_description/meshes/inchworm_foot.dae"/>
+                </geometry>
+            </visual>
+            <inertial>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <mass value="0.09525"/>
+                <inertia ixx="358.56" ixy="0.0" ixz="0.0" iyy="337.47" iyz="0.0" izz="98.47"/>
+            </inertial>
+            <collision>
+                <origin xyz="0.0 0.0 -0.044" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <cylinder radius="0.0345" length="0.01"/>
+                </geometry>
+            </collision>
+        </link>
+
+        <!-- <link name="backfoot_ee_link">
+            <gazebo>
+                <gravity>false</gravity>
+            </gazebo>
+            <inertial>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <mass value="10.0"/>
+                <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+            </inertial>
+        </link> -->
+
+        <!-- Joint Transmission Macro -->
+        <xacro:macro name="joint_transmission" params="prefix">
+            <transmission name="${prefix}_transmission">
+                <type>transmission_interface/SimpleTransmission</type>
+                <joint name="${prefix}_joint">
+                    <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+                </joint>
+                <actuator name="${prefix}_motor"></actuator>
+            </transmission>
+        </xacro:macro>
+
+        <!-- Joints -->
+
+        <joint name="main_b_joint" type="continuous">
+            <origin xyz="0.0 0.0 0.0" rpy="-1.5707 1.5707 0"/>
+            <parent link="inchworm_main"/>
+            <child link="b_link"/>
+            <axis xyz="0 0 1"/>
+            <limit  effort="${joint_torque}"
+                    velocity="${joint_speed * 2 * 3.14159 / 60 }"/>
+        </joint>
+        <xacro:joint_transmission prefix="main_b"/>
+
+        <joint name="b_frontleg_joint" type="continuous">
+            <origin xyz="0.1633 0.0 0.0" rpy="0 0 0"/>
+            <parent link="b_link"/>
+            <child link="frontleg_link"/>
+            <axis xyz="0 0 1"/>
+            <limit  effort="${joint_torque}"
+                    velocity="${joint_speed * 2 * 3.14159 / 60 }"/>
+        </joint>
+        <xacro:joint_transmission prefix="b_frontleg"/>
+
+        <joint name="frontleg_frontfoot_joint" type="continuous">
+            <origin xyz="0.0573 0.0 0.0" rpy="1.5707 0.0 -1.5707"/>
+            <parent link="frontleg_link"/>
+            <child link="frontfoot_link"/>
+            <axis xyz="0 0 1"/>
+            <limit  effort="${joint_torque}"
+                    velocity="${joint_speed * 2 * 3.14159 / 60 }"/>
+        </joint>
+        <xacro:joint_transmission prefix="frontleg_frontfoot"/>
+
+        <!-- <joint name="frontfoot_ee_joint" type="fixed">
+            <origin xyz="0.0 0.0 -0.0489" rpy="0.0 0.0 0.0"/>
+            <parent link="frontfoot_link"/>
+            <child link="frontfoot_ee_link"/>
+            <limit  effort="${joint_torque}"
+                    velocity="${joint_speed * 2 * 3.14159 / 60 }"/>
+        </joint> -->
+
+        <joint name="main_c_joint" type="continuous">
+            <origin xyz="0.0 0.0 0.0" rpy="-1.5707 1.5707 0"/>
+            <parent link="inchworm_main"/>
+            <child link="c_link"/>
+            <axis xyz="0 0 1"/>
+            <limit  effort="${joint_torque}"
+                    velocity="${joint_speed * 2 * 3.14159 / 60 }"/>
+        </joint>
+        <xacro:joint_transmission prefix="main_c"/>
+
+        <joint name="c_backleg_joint" type="continuous">
+            <origin xyz="0.1633 0.0 0.0" rpy="0 0 0"/>
+            <parent link="c_link"/>
+            <child link="backleg_link"/>
+            <axis xyz="0 0 1"/>
+            <limit  effort="${joint_torque}"
+                    velocity="${joint_speed * 2 * 3.14159 / 60 }"/>
+        </joint>
+        <xacro:joint_transmission prefix="c_backleg"/>
+
+        <joint name="backleg_backfoot_joint" type="continuous">
+            <origin xyz="0.0573 0.0 0.0" rpy="1.5707 0.0 -1.5707"/>
+            <parent link="backleg_link"/>
+            <child link="backfoot_link"/>
+            <axis xyz="0 0 1"/>
+            <limit  effort="${joint_torque}"
+                    velocity="${joint_speed * 2 * 3.14159 / 60 }"/>
+        </joint>
+        <xacro:joint_transmission prefix="backleg_backfoot"/>
+
+        <!-- <joint name="backfoot_ee_joint" type="fixed">
+            <origin xyz="0.0 0.0 -0.0489" rpy="0.0 0.0 0.0"/>
+            <parent link="backfoot_link"/>
+            <child link="backfoot_ee_link"/>
+            <limit  effort="${joint_torque}"
+                    velocity="${joint_speed * 2 * 3.14159 / 60 }"/>
+        </joint> -->
+    </xacro:macro>
+
+</robot>
